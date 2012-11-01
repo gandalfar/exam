@@ -1,5 +1,7 @@
+# -*- coding: utf-8 -*-
+
 from django.conf import settings
-from django.shortcuts import get_object_or_404, render_to_response
+from django.shortcuts import get_object_or_404, render_to_response, render
 from django.template import RequestContext
 from exam.calc.models import Lecture, Task, Section, Question, Answer, ExamLogEntry, Dataset
 from django.db.models import Q
@@ -11,7 +13,9 @@ from django.core.exceptions import ObjectDoesNotExist
 from exam.calc.validators import validator_core
 from django.contrib.auth.models import User
 from pprint import pprint
+from django import forms
 
+@login_required
 def index(request):
     var1 = request.user.get_profile().var1
     var2 = request.user.get_profile().var2
@@ -25,8 +29,8 @@ def index(request):
       'section_list': section_list,
     }
     return render_to_response('exam/index.html', context, context_instance=RequestContext(request))
-index=login_required(index)
 
+@login_required
 def lecture(request, lecture):
     lect = get_object_or_404(Lecture, url=lecture)
     tasks = Section.objects.filter(lecture__id__exact=lect.id)
@@ -35,9 +39,8 @@ def lecture(request, lecture):
         'task_list' : tasks,
         }
     return render_to_response('exam/lecture.html', context, context_instance=RequestContext(request))
-lecture=login_required(lecture)
 
-
+@login_required
 def task(request, lecture, section):
   
     this_section = Section.objects.get(pk=section)
@@ -102,11 +105,11 @@ def task(request, lecture, section):
         }
     
     return render_to_response('exam/task.html', context, context_instance=RequestContext(request))
-task = login_required(task)
 
 #decorator to limit certain pages to staff only
 staff_required = user_passes_test(lambda u: u.is_staff)
 
+@staff_required
 def review(request, cikel):
     # if cikel == "Stari":
     #   cikel = "Stari program"
@@ -142,8 +145,8 @@ def review(request, cikel):
                               {'user_list': user_list,
                               'section_list': section_list,},
                               context_instance=RequestContext(request))
-review = login_required(staff_required(review))
-                              
+                 
+@staff_required
 def review_student(request, username):
     user = get_object_or_404(User, username=username)
     
@@ -153,7 +156,6 @@ def review_student(request, username):
                               {'student': user,
                                'section_list': section_list,},                              
                               context_instance=RequestContext(request))
-review_student = login_required(staff_required(review_student))
 
 def remove_answer(request, aid):
     #ExamLogEntry(user=request.user, question=q, input=student_input)
@@ -168,6 +170,31 @@ def remove_answer(request, aid):
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', "/"))
 
+@staff_required
+def import_data(request, ftype='vars'):
+    class DeleteVariablesForm(forms.Form):
+        del_vars = forms.CharField(widget=forms.CheckboxInput(), label="Izbriši spremenljivke", required=True)
+
+    var_form = DeleteVariablesForm()
+    if ftype == 'vars':
+        if request.POST:
+            var_form = DeleteVariablesForm(request.POST)
+            if var_form.is_valid():
+                if var_form.cleaned_data.get('del_vars') == 'on':
+                    Dataset.objects.all().exclude(varname='PS25.2001').exclude(varname='GEB1.2001').delete()
+
+
+
+    ctx = {
+        'num_users': User.objects.filter(is_staff=False).count(),
+        'num_admin': User.objects.filter(is_staff=True).count(),
+        'num_vars': Dataset.objects.all().count(),
+        'var_form': var_form
+    }
+    return render(request, 'exam/import_data.html', ctx)
+
+
+@login_required
 def summary(request):
     user = request.user
     var1 = request.user.get_profile().var1
@@ -181,4 +208,3 @@ def summary(request):
                                'var1': var1,
                                'var2': var2},
                               context_instance=RequestContext(request))
-summary = login_required(summary)

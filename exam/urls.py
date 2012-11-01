@@ -1,4 +1,4 @@
-from django.conf.urls.defaults import *
+from django.conf.urls import *
 from django.conf import settings
 
 from django.contrib import admin
@@ -15,14 +15,15 @@ urlpatterns = patterns('',
      (r'^answer/remove/(?P<aid>[-\w]+)/$', 'exam.calc.views.remove_answer'),
      
      (r'^summary/$', 'exam.calc.views.summary'),
+     url(r'^import_data/$', 'exam.calc.views.import_data', name="import_data"),
      
      (r'^review/cikel/(?P<cikel>[-\w\s]+)/$', 'exam.calc.views.review'),
      (r'^review/student/(?P<username>[-\w]+)/$', 'exam.calc.views.review_student'),
      (r'^review/$', 'django.views.generic.simple.direct_to_template', {'template':'exam/review_index.html'}),
      (r'^$', 'exam.calc.views.index'),
     
-    # most greedy come last
-    # (r'^(?P<lecture>[a-z][a-z0-9_]*)/$', 'exam.calc.views.lecture'),
+     # most greedy comes last
+     # (r'^(?P<lecture>[a-z][a-z0-9_]*)/$', 'exam.calc.views.lecture'),
      (r'^(?P<lecture>[a-z][a-z0-9_]*)/(?P<section>[a-z0-9_]+)/$', 'exam.calc.views.task'),
      
      
