@@ -1,0 +1,74 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+                <div class="pages">
+                        {% ifequal sid "1" %}
+                            <span>{{ sid }}</span>
+                        {% else %}
+                            <a href="/statistika2006/1/">1</a>
+                        {% endifequal %}
+                        {% ifequal sid "2" %}
+                            <span>{{ sid }}</span>
+                        {% else %}
+                            <a href="/statistika2006/2/">2</a>
+                        {% endifequal %}
+                        {% ifequal sid "3" %}
+                            <span>{{ sid }}</span>
+                        {% else %}
+                            <a href="/statistika2006/3/">3</a>
+                        {% endifequal %}
+                        {% ifequal sid "4" %}
+                            <span>{{ sid }}</span>
+                        {% else %}
+                            <a href="/statistika2006/4/">4</a>
+                        {% endifequal %}
+                </div>
+    
+<ol class="exam">
+{% for task in task_list %}
+
+<li>
+    <h2>{{ task.title|safe }} </h2>
+    <em>{{ task.text|safe }}</em>
+</li>
+
+<div class="exam">
+    <h2>{{ this_section.title|safe }} </h2>
+    {% if this_section.text %}<em>{{ this_section.text }}</em>{% endif %}
+</div>
+    
+    {% if task.question_set.count %}    
+      <p><em>Vnesite odgovore (primer: 4,2311)</em></p>
+    {% endif %}
+    <ul>
+    {% for q in question_list %}
+    {% ifequal q.task.id task.id %}
+        <li>
+            {% if q.a %}            
+              {% if q.a.is_correct %}
+                <div>{{ q.text|safe }}: </div><span class="right">{{ q.a.input }}</span>  <span class="odstrani"><a href="/answer/remove/{{ q.a.id }}/" title="odstrani odgovor">(x)</a></span>
+              {% else %}
+                <div>{{ q.text }}
+                <form action="" method="post">{% csrf_token %}<div>
+                <input type="text" class="vTextField required" name="input" size="30" value="{{ q.a.input }}" maxlength="100" />
+                <input type="hidden" name="qnum" value="{{ q.id }}" />
+                <input type="submit" class="submit" value="&#187;" />
+                </div>
+                </form>
+                </div>
+                <span class="wrong">Odgovor ni pravilen!</span>
+              {% endif %}
+            {% else %}
+                <div>{{ q.text|safe }}:<form action="" method="post">{% csrf_token %}<div>
+                <input type="text" class="vTextField required" name="input" size="30" value="" maxlength="100" />
+                <input type="hidden" name="qnum" value="{{ q.id }}" />
+                <input type="submit" class="submit" value="&#187;" />
+                </div></form></div>
+            {% endif %}
+        </li>
+    {% endifequal %}
+    {% endfor %}
+    </ul>
+{% endfor %}
+</ol>
+{% endblock %}

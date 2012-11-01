@@ -1,0 +1,15 @@
+{% extends "exam/base.html" %}
+{% block content %}
+
+<p><div class="text">
+<b>Statistične naloge 2010/11</b>
+<br /><br />
+
+<ul>
+ 	{% for cikel in cikel_list %}
+ 		<li><a href="/review/cikel/{{ cikel.cikel }}">{{ cikel.cikel }}</a></li>
+ 	{% endfor %}
+</ul>
+
+</div>
+{% endblock %}

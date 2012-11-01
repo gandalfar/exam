@@ -1,0 +1,63 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+
+{% load correcttag %}
+
+<div class="pagination">
+    <span class="step-links">
+        {% if user_list.has_previous %}
+            <a href="?page={{ user_list.previous_page_number }}">prejšnja</a>
+        {% endif %}
+
+        <span class="current">
+            Stran {{ user_list.number }} od {{ user_list.paginator.num_pages }}.
+        </span>
+
+        {% if user_list.has_next %}
+            <a href="?page={{ user_list.next_page_number }}">naslednja</a>
+        {% endif %}
+    </span>
+</div>
+
+<table class="users" cellspacing="0">
+  <tr>
+    <th>Vpisna št.</th>
+    <th>Priimek in ime</th>
+    {% for section in section_list %}
+    <th>{{ section|safe }}</th>
+    {% endfor %}
+  </tr>
+  {% for student in user_list.object_list %}
+  <tr>
+    <td><a href="/review/student/{{ student.get_profile.vpisna }}/">{{ student.get_profile.vpisna }}</td>
+    <td>{{ student.last_name}}, {{ student.first_name}}</td>
+    {% for section in section_list %}
+      {% check_all section.id student.id %}
+      {% ifequal correct_count answer_count %}
+        <td class="right"> {{ correct_count}}/{{ answer_count }}</td>
+      {% else %}
+        <td>{{ correct_count}}/{{ answer_count }}</td>
+      {% endifequal %}
+    {% endfor %}
+  </tr>
+  {% endfor %}
+</table>
+
+<div class="pagination">
+    <span class="step-links">
+        {% if user_list.has_previous %}
+            <a href="?page={{ user_list.previous_page_number }}">prejšnja</a>
+        {% endif %}
+
+        <span class="current">
+            Stran {{ user_list.number }} od {{ user_list.paginator.num_pages }}.
+        </span>
+
+        {% if user_list.has_next %}
+            <a href="?page={{ user_list.next_page_number }}">naslednja</a>
+        {% endif %}
+    </span>
+</div>
+
+{% endblock %}

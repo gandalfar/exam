@@ -1,0 +1,737 @@
+{% extends "exam/base.html" %}
+{% block content %}
+
+<p><div class="text">
+<b>Statistične naloge 2011/12</b>
+<br /><br />
+Na tej spletni strani boste našli podatke za izdelavo statistične naloge, imeli pa boste tudi možnost sprotnega preverjanja vaših že izračunanih rezultatov.<br /><br />
+Vse dodatne informacije in navodila v zvezi s statistično nalogo lahko najdete na spletni strani <a href="http://statistika.fdvinfo.net/">http://statistika.fdvinfo.net/</a>. 
+<br /><br />
+<b>Vaši podatki so naslednji:</b>
+<br /><br />
+Obravnavate podatke za leto <b>{{ var1.year }}</b>
+<br /><br />
+<b>Prva spremenljivka (za vse podnaloge):</b>
+<br /><b>{{ var1 }}:</b> {{ var1.descs }} <i>({{ var1.desce  }})</i><br />
+
+<br /><br />   
+<b>Druga spremenljivka (za 4. podnalogo):</b>
+<p><b>{{ var2  }}:</b> {{ var2.descs  }} <i>({{ var2.desce  }})</i></p>
+<br />
+<p>{% if var2.u1 %}{{ var2.u1 }}{% endif %}</p>
+<br />
+<br />
+<table class="users" cellspacing="0">
+	<tr>
+		<th>Dr&#382;ava</th>
+		<th>{{ var1 }}</th>
+	</tr>
+	<tr>
+		<td>Avstrija</td>
+        {% if not var1.c1 %}
+            <td>-</td>
+        {% else %}
+    		<td>{{ var1.c1 }}</td>
+        {% endif %}
+	</tr>
+	<tr>
+		<td>Belgija</td>
+        {% if not var1.c2 %}
+            <td>-</td>
+        {% else %}
+    		<td>{{ var1.c2 }}</td>
+        {% endif %}
+
+	</tr>
+	<tr>
+		<td>Bolgarija</td>
+        {% if not var1.c3 %}
+            <td>-</td>
+        {% else %}
+    		<td>{{ var1.c3 }}</td>
+        {% endif %}
+
+	<tr/>
+        <tr>
+                <td>Ciper</td>
+        {% if not var1.c4 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c4 }}</td>
+        {% endif %}
+        
+
+        <tr/>  
+        <tr>
+                <td>Češka republika</td>
+        {% if not var1.c5 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c5 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Danska</td>
+        {% if not var1.c6 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c6 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Estonija</td>
+        {% if not var1.c7 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c7 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Finska</td>
+        {% if not var1.c8 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c8 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Francija</td>
+        {% if not var1.c9 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c9 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Grčija</td>
+        {% if not var1.c10 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c10 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Irska</td>
+		{% if not var1.c11 %}
+			<td>-</td>
+		{% else %}
+                	<td>{{ var1.c11 }}</td>
+		{% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Italija</td>
+        {% if not var1.c12 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c12 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Latvija</td>
+        {% if not var1.c13 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c13 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Litva</td>
+        {% if not var1.c14 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c14 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Luksemburg</td>
+        {% if not var1.c15 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c15 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Madžarska</td>
+        {% if not var1.c16 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c16 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Malta</td>
+        {% if not var1.c17 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c17 }}</td>
+        {% endif %}
+
+
+        <tr/>  
+        <tr>
+                <td>Nemčija</td>
+        {% if not var1.c18 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c18 }}</td>
+        {% endif %}
+
+
+        <tr/>     
+        <tr>
+                <td>Nizozemska</td>
+        {% if not var1.c19 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c19 }}</td>
+        {% endif %}
+
+
+        <tr/>     
+        <tr>
+                <td>Poljska</td>
+        {% if not var1.c20 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c20 }}</td>
+        {% endif %}
+
+        <tr/>     
+        <tr>
+                <td>Portugalska</td>
+        {% if not var1.c21 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c21 }}</td>
+        {% endif %}
+
+        <tr/>     
+        <tr>
+                <td>Romunija</td>
+        {% if not var1.c22 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c22 }}</td>
+        {% endif %}
+
+        <tr/>            
+        <tr>
+                <td>Slovaška</td>
+        {% if not var1.c23 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c23 }}</td>
+        {% endif %}
+
+        <tr/>            
+        <tr>
+                <td>Slovenija</td>
+        {% if not var1.c24 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c24 }}</td>
+        {% endif %}
+
+        <tr/>            
+
+        <tr>
+        <td>Španija</td>
+        {% if not var1.c25 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c25 }}</td>
+        {% endif %}
+        <tr/>
+        
+        <tr>
+        <td>Švedska</td>
+        {% if not var1.c26 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c26 }}</td>
+        {% endif %}
+        <tr/>
+
+        <tr>
+        <td>Velika Britanija</td>
+        {% if not var1.c27 %}
+            <td>-</td>
+        {% else %}
+                <td>{{ var1.c27 }}</td>
+        {% endif %}
+        <tr/>
+        
+        
+</table>
+<br /><br />
+<b>Podatki za obe spremenljivki za slučajni vzorec držav iz populacije držav EU (za 2. in 4. podnalogo):</b>
+<br /><br />
+<a name="vzorec" />
+<table class="users" cellspacing="0">
+	<tr>
+		<th>Dr&#382;ava</th>
+		<th>{{ var1 }}</th>
+		<th>{{ var2 }}</th>
+	</tr>
+        {% if d.c1 %}
+
+    	<tr>
+		<td>Avstrija</td>
+		{% if not var1.c1 %}
+		  <td>-</td>
+		{% else %}
+    		<td>{{ var1.c1 }}</td>		
+		{% endif %}
+		
+		{% if not var2.c1 %}
+		  <td>-</td>
+		{% else %}
+    		<td>{{ var2.c1 }}</td>		
+		{% endif %}
+    	</tr>
+        {% endif %}
+
+        {% if d.c2 %}
+    	<tr>
+		<td>Belgija</td>
+		{% if not var1.c2 %}
+		  <td>-</td>
+		{% else %}
+    		<td>{{ var1.c2 }}</td>		
+		{% endif %}
+		
+		{% if not var2.c2 %}
+		  <td>-</td>
+		{% else %}
+    		<td>{{ var2.c2 }}</td>		
+		{% endif %}
+        {% endif %}
+        
+    {% if d.c3 %}
+    <tr>
+		<td>Bolgarija</td>
+  		{% if not var1.c3 %}
+  		  <td>-</td>
+  		{% else %}
+      		<td>{{ var1.c3 }}</td>		
+  		{% endif %}
+		
+  		{% if not var2.c3 %}
+  		  <td>-</td>
+  		{% else %}
+      		<td>{{ var2.c3 }}</td>		
+  		{% endif %}
+      	<tr/>
+    {% endif %}
+
+    {% if d.c4 %}
+      <tr>
+      <td>Ciper</td>
+  		{% if not var1.c4 %}
+  		  <td>-</td>
+  		{% else %}
+      		<td>{{ var1.c4 }}</td>		
+  		{% endif %}
+
+  		{% if not var2.c4 %}
+  		  <td>-</td>
+  		{% else %}
+      		<td>{{ var2.c4 }}</td>		
+  		{% endif %}
+        <tr/>  
+        {% endif %}
+        
+        
+        
+        {% if d.c5 %}
+        <tr>
+                <td>Češka republika</td>
+            		{% if not var1.c5 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c5 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c5 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c5 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c6 %}
+        <tr>
+                <td>Danska</td>
+            		{% if not var1.c6 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c6 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c6 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c6 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c7 %}
+        <tr>
+                <td>Estonija</td>
+            		{% if not var1.c7 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c7 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c7 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c7 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c8 %}
+        <tr>
+                <td>Finska</td>
+            		{% if not var1.c8 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c8 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c8 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c8 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c9 %}
+        <tr>
+                <td>Francija</td>
+            		{% if not var1.c9 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c9 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c9 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c9 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c10 %}
+        <tr>
+                <td>Grčija</td>
+            		{% if not var1.c10 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c10 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c10 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c10 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+		{% if d.c11 %}
+        <tr>
+                <td>Irska</td>
+            		{% if not var1.c11 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c11 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c11 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c11 }}</td>		
+            		{% endif %}
+        <tr/>  
+		{% endif %}
+        {% if d.c12 %}
+        <tr>
+                <td>Italija</td>
+            		{% if not var1.c12 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c12 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c12 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c12 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c13 %}
+        <tr>
+                <td>Latvija</td>
+            		{% if not var1.c13 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c13 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c13 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c13 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c14 %}
+        <tr>
+                <td>Litva</td>
+            		{% if not var1.c14 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c14 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c14 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c14 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c15 %}
+        <tr>
+                <td>Luksemburg</td>
+            		{% if not var1.c15 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c15 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c15 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c15 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c16 %}
+        <tr>
+                <td>Madžarska</td>
+            		{% if not var1.c16 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c16 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c16 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c16 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c17 %}
+        <tr>
+                <td>Malta</td>
+            		{% if not var1.c17 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c17 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c17 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c17 }}</td>		
+            		{% endif %}
+        <tr/>  
+        {% endif %}
+        {% if d.c18 %}
+        <tr>
+                <td>Nemčija</td>
+            		{% if not var1.c18 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c18 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c18 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c18 }}</td>		
+            		{% endif %}
+        <tr/>     
+        {% endif %}
+        {% if d.c19 %}
+        <tr>
+                <td>Nizozemska</td>
+            		{% if not var1.c19 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c19 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c19 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c19 }}</td>		
+            		{% endif %}
+        <tr/>     
+        {% endif %}
+        {% if d.c20 %}
+        <tr>
+                <td>Poljska</td>
+            		{% if not var1.c20 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c20 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c20 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c20 }}</td>		
+            		{% endif %}
+        <tr/>     
+        {% endif %}
+        {% if d.c21 %}
+        <tr>
+                <td>Portugalska</td>
+            		{% if not var1.c21 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c21 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c21 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c21 }}</td>		
+            		{% endif %}        <tr/>     
+        {% endif %}
+        {% if d.c22 %}
+        <tr>
+                <td>Romunija</td>
+            		{% if not var1.c22 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c22 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c22 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c22 }}</td>		
+            		{% endif %}        <tr/>            
+        {% endif %}
+        {% if d.c23 %}
+        <tr>
+                <td>Slovaška</td>
+            		{% if not var1.c23 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c23 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c23 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c23 }}</td>		
+            		{% endif %}        <tr/>            
+        {% endif %}
+        {% if d.c24 %}
+        <tr>
+                <td>Slovenija</td>
+            		{% if not var1.c24 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c24 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c24 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c24 }}</td>		
+            		{% endif %}        <tr/>            
+        {% endif %}
+        {% if d.c25 %}
+        <tr>
+                <td>Španija</td>
+            		{% if not var1.c25 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c25 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c25 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c25 }}</td>		
+            		{% endif %}        <tr/>            	
+        {% endif %}
+        {% if d.c26 %}
+        <tr>
+                <td>Švedska</td>
+            		{% if not var1.c26 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c26 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c26 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c26 }}</td>		
+            		{% endif %}        <tr/>            	
+        {% endif %}
+        {% if d.c27 %}
+        <tr>
+                <td>Velika Britanija</td>
+            		{% if not var1.c27 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c27 }}</td>		
+            		{% endif %}
+
+            		{% if not var2.c27 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c27 }}</td>		
+            		{% endif %}        <tr/>            	
+        {% endif %}
+
+
+</table>
+ <br /><br />
+</div>
+
+{% endblock %}

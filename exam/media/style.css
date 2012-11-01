@@ -1,0 +1,362 @@
+body {
+	font-size:11px;
+	font-family:verdana, sans-serif;
+	background:#ebebeb url("menu.gif") repeat-y top center;
+	text-align:center;
+}
+
+body, html {
+	height:100%;
+}
+
+body, div, img, span, form, h1, h2, h3, h4, h5, table, tr, td, ul, li, p, ol {
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+ul li {
+	list-style-position:outside;
+	list-style-type:disc;
+}
+
+ul.nodot li {
+	list-style-type:none;
+}
+
+ol li {
+	list-style-position:outside;
+}
+
+h1, h2, h3, h4, h5, input, option, select, textarea {
+	margin:0;
+	font-size:1em;
+	font-family:verdana, sans-serif;
+}
+
+table, tr, td {
+	border-collapse:collapse;
+	text-align:left;
+	vertical-align:top;
+	text-align: center;
+}
+
+#top {
+	width:100%;
+	overflow:hidden;
+	white-space:nowrap;
+	position:absolute;
+	z-index:2;
+	top:115px;
+	right:0;
+	height:2em;
+}
+
+#top .left {
+	position:absolute;
+	left:50%;
+	width:1830px;
+	margin-left:-1465px;
+	height:2em;
+}
+
+#top .left div, #top .left a {
+	float:right;
+}
+
+#top .right a {
+	float:left;
+}
+
+#top .right a, #top .left div, #top .left a {
+	height:2em;
+	line-height:2em;
+	margin-left:0.8em;
+	font-weight:bold;
+	color:#AAAAAA;
+	text-decoration:none;
+}
+
+#top .left div { color:black; }
+
+#top .left a:hover, #top .right a:hover {
+	color:#777777;
+}
+
+#top .right { 
+	position:absolute;
+	left:50%;
+	margin-left:365px;
+	width:500px;
+	height:2em;
+}
+
+#main {
+	width:730px;
+	background:transparent url("menu.gif") repeat-y top left;
+	margin:0 auto;
+	text-align:left;
+	min-height:100%;
+	position:static;
+	padding-top:159px;
+}
+
+#title {
+	height:159px;
+	background:transparent url("title.gif") no-repeat top left;
+	width:182px;
+	margin-left:-365px;
+	position:absolute;
+	z-index:5;
+	left:50%;
+	top:0;
+}
+
+#title a span { display:none; }
+
+#title a {
+	height:43px;
+    	margin-top:100px; 
+	display:block;
+}
+
+#menu {
+	width:182px;
+	display:block;
+	text-align:center;
+	position:relative;
+	z-index:3;
+	float:left;
+}
+
+#menu .links {
+	clear:left;
+	padding:24px 0;
+}
+
+#menu .links div {
+	height:1px;
+	overflow:hidden;
+}
+
+#menu .links a {
+	margin:2px 10px;
+	display:block;
+	padding:5px;
+	color:black;
+	text-decoration:none;
+	position:relative;
+}
+
+#menu .links a:hover {
+	background-color:#DDDDDD;
+}
+
+#menu .links a.selected, #menu .links a.selected:hover {
+	background-color:#b50000;
+	color:white;
+}
+
+#menu .user {
+	font-size:10px;
+	padding-top:20px;
+}
+
+#menu .user div {
+	margin-bottom:3px;
+}
+
+#menu .user span {
+	color:#b50000;
+	font-weight:bold;
+}
+
+#menu .user a {
+	color:black;
+	text-decoration:underline;
+}
+
+#menu .user a:hover {
+	color:#b50000;
+}
+
+#content {
+	float:right;
+	width:500px;
+	padding-bottom:20px;
+}
+
+#content .pages {
+	text-align:right;
+	height:20px;
+	line-height:20px;
+	padding-bottom:12px;
+	font-size:1.3em;
+}
+
+#content .pages a {
+	color:black;
+	text-decoration:none;
+	padding:0 0.2em;
+}
+
+#content .pages a:hover {
+	color:#b50000;
+}
+
+#content .pages span {
+	font-size:1.8em;
+	color:#b50000;
+	padding:0 0.1em;
+}
+
+div.text {
+	text-align:justify;
+	line-height:1.3em;
+}
+
+.text a {
+	color:black;
+	text-decoration:underline;
+}
+
+/*.text a:hover {
+	color:#b50000;
+}*/
+
+tr:hover td {
+	color:#b50000;
+}
+
+.main_table {
+	line-height:1.3em;
+	width:100%;
+}
+
+p {
+	text-align:justify;
+}
+
+.main_table td.one {
+	width:9em;
+	padding-right:1em;
+}
+
+.main_table td {
+	padding-bottom:1em;
+}
+
+li {
+	padding-bottom:0.4em;
+}
+
+.main_table a {
+	text-decoration:underline;
+	color:black;
+}
+
+.main_table a:hover {
+	color:#b50000;
+}
+
+ol.exam {
+	margin-left:2em;
+}
+
+ol.exam li {
+	padding-bottom:2em;
+}
+
+ol.exam ul {
+	margin-left:2em;
+}
+
+ol.exam ul li {
+	list-style-type:disc;
+	padding-bottom:0.8em;
+}
+
+ol.exam ul li li {
+	list-style-type:none;
+}
+
+ol.exam ul li ul {
+	margin-top:0.8em;
+}
+
+input.text, textarea, .vTextField {
+	background:white;
+	padding:1px 0.2em;
+	width:15em;
+	border:1px solid #a4a4a4;
+}
+
+textarea {
+	width:70%;
+	height:6em;
+	margin-top:0.3em;
+}
+
+input.submit {
+	background-color:#b50000;
+	padding:1px 0.2em;
+	width:2em;
+	border:1px solid #a4a4a4;
+	color:white;
+	cursor:pointer;
+}
+
+.right {
+	color:green;
+	font-weight:bold;
+}
+
+.wrong {
+	color:red;
+	font-weight:bold;
+}
+
+select {
+	width:15em;
+}
+
+table.users {
+	width:498px;
+	border:1px solid #a4a4a4;
+	background:white;
+	text-align: center;
+}
+
+.users td, .users th {
+	padding:2px 4px;
+}
+
+.users td {
+	border-top:1px solid #DDDDDD;
+}
+
+.users th {
+	background-color:#DDDDDD;
+}
+
+.users th.one, .users th.four { width:100px; }
+.users th.two {
+	width:130px;
+}
+
+li.dim a {
+	color:#888888;
+}
+
+li.dim a:hover {
+	color:#b50000;
+}
+
+.odstrani a {
+	color:black;
+	text-decoration:none;
+}
+
+td.first {
+  text-align: left;
+}

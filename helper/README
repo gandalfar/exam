@@ -1,0 +1,14 @@
+To export students:
+
+Open .xls file in OpenOffice.org:
+
+1. File > Save as ..
+2. File type - Text CSV; edit filter settings
+3. Charset - UTF8
+   Field delimiter - {Tab}
+   Text delimiter - "
+   
+4. Open .csv file ane remove the first line as it includes definitions of columns
+   
+5. Uncomment second part of convert.py script and fix the filename
+   

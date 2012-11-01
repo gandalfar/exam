@@ -1,0 +1,19 @@
+{% extends "exam/base.html" %}
+
+{% block location %}&nbsp;-&nbsp;{{ lecture }}{% endblock %}
+
+{% block content %}
+<p><em>Poucuje: </em><a href="mailto:{{ lecture.email }}">{{ lecture.professor }}</a></p>
+{% if lecture.text %}
+<p><em>Kratek opis: </em></p>
+<p>{{ lecture.text }}</p>
+{% endif %}
+{% if section_list %} 
+<p><em>Poglavja: </em></p>
+<ul>
+{% for s in section_list %}
+<li><a href="{{ s.get_absolute_url }}">{{ s.title }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+{% endblock %}

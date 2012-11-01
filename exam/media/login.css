@@ -1,0 +1,116 @@
+body {
+	font-size:11px;
+	font-family:verdana, sans-serif;
+	background:#ebebeb;
+	text-align:center;
+}
+
+body, html {
+	height:100%;
+}
+
+body, div, img, span, form, h1, h2, h3, h4, h5, table, tr, td {
+	border:0;
+	margin:0;
+	padding:0;
+}
+
+h1, h2, h3, h4, h5, input, option, select {
+	margin:0;
+	font-size:1em;
+	font-family:verdana, sans-serif;
+}
+
+table, tr, td {
+	border-collapse:collapse;
+	text-align:left;
+	vertical-align:middle;
+}
+
+#main {
+	width:730px;
+	margin:0 auto;
+	text-align:center;
+	position:static;
+	padding-top:159px;
+}
+
+#title {
+	height:158px;
+	background:transparent url("title.gif") no-repeat top left;
+	width:182px;
+	margin-left:-365px;
+	position:absolute;
+	z-index:5;
+	left:50%;
+	top:0;
+}
+
+#title a span { display:none; }
+
+#title a {
+	height:43px;
+	margin-top:100px;
+	display:block;
+}
+
+table {
+	display:block;
+	margin:0 auto;
+	margin-top:10px;
+	width:22.5em;
+}
+
+table td {
+	padding:0.25em;
+}
+
+table .one {
+	width:8em;
+	text-align:right;
+}
+
+table.two {
+	width:10em;
+}
+
+table .three {
+	width:3em;
+}
+
+input.text {
+	background:white;
+	padding:1px 0.2em;
+	width:9.6em;
+	border:1px solid #a4a4a4;
+}
+
+input.submit {
+	background-color:#b50000;
+	padding:1px 0.2em;
+	width:2em;
+	border:1px solid #a4a4a4;
+	color:white;
+	cursor:pointer;
+}
+
+#loginfo {
+        display:block;
+        margin:0 auto;
+        margin-top:90px;
+        width:30em;
+	text-align: left;
+}
+
+#help {
+        display:block;
+        margin:0 auto;
+        margin-top:20px;
+        width:30em;
+	text-align: left;
+}
+
+#help a {
+	color:black;
+	text-decoration:underline;
+}

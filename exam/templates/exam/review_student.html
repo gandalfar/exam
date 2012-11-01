@@ -1,0 +1,35 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+{% load correcttag %}
+
+<b>{{ student.first_name }} {{ student.last_name }} - {{ student.get_profile.vpisna }} - {% now "d.n.Y" %} </b>
+<br /><br />
+<b>{{ student.get_profile.var1 }}:</b> {{ student.get_profile.var1.descs }} <i>({{ student.get_profile.var1.desce  }})</i><br />
+
+<br /><b>{{ student.get_profile.var2  }}:</b> {{ student.get_profile.var2.descs  }} <i>({{ student.get_profile.var2.desce  }})</i>
+
+<br /><br />
+
+
+{% for section in section_list %}
+<table class="users" cellspacing="0" frame="all">
+  <caption>{{ section|safe }}</caption>
+  <tr>
+    <th>Vprašanje</th>
+    <th>Odgovor študenta</th>
+    <th>Izračunan odgovor</th>
+  </tr>
+  {% for task in section.task_set.all|order_by:"order" %}{% if task.active %}
+    {% for question in task.question_set.all %}{% if question.active %}
+      {% show_correct question.id student.id %}
+      <tr>
+        <td>{{ question|safe }} {% ifequal student.get_profile.cikel "Ostalo" %}({% show_precision question.id student.id %}%){% endifequal %}</td>
+        <td class={% if student_ans.correct %}"right"{% else %}"wrong"{% endif %}>{{ student_ans.input }}</td>
+        <td>{{ calc_ans|stringformat:"01.4f" }}</td>
+      </tr>
+    {% endif %}{% endfor %}    
+  {% endif %}{% endfor %}
+</table><br /><br />
+{% endfor %}
+{% endblock %}

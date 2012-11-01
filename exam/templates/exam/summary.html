@@ -1,0 +1,34 @@
+{% extends "exam/base.html" %}
+
+{% block content %}
+{% load correcttag %}
+
+<b>{{ student.first_name }} {{ student.last_name }} - {{ student.get_profile.vpisna }} - {% now "d.n.Y" %} </b>
+<br /><br />
+<b>{{ var1 }}:</b> {{ var1.descs }} <i>({{ var1.desce  }})</i><br />
+
+<br /><b>{{ var2  }}:</b> {{ var2.descs  }} <i>({{ var2.desce  }})</i>
+
+<br /><br />
+
+{% for section in section_list %}
+<table class="users" cellspacing="0" frame="all">
+  <caption>{{ section|safe }}</caption>
+  <tr>
+    <th>Vprašanje</th>
+    <th>Odgovor študenta</th>
+    <th>Pravilno?</th>
+  </tr>
+  {% for task in section.task_set.all %}{% if task.active %}  
+    {% for question in task.question_set.all|order_by:"order" %}{% if question.active %}
+      {% show_correct question.id student.id %}
+      <tr>
+        <td class="first">{{ question|safe }}</td>
+        <td class={% if student_ans.correct %}"right"{% else %}"wrong"{% endif %}>{{ student_ans.input }}</td>
+        <td>{% if student_ans.correct %}&#10003;{% endif %}</td>
+      </tr>
+    {% endif %}{% endfor %}    
+  {% endif %}{% endfor %}
+</table><br /><br />
+{% endfor %}
+{% endblock %}

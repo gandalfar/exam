@@ -1,0 +1,35 @@
+{% extends "exam/base.html" %}
+
+{% block user %}
+{% endblock %}
+
+{% block content %}
+    <div id="loginfo">
+         <h1>Statistična naloga 2011/12</h1>
+        <br />
+        Za dostop do vaših podatkov in preverjanje rezultatov naloge se morate prijaviti.
+        <br /><br />
+        Vpišite vašo vpisno številko (npr. 21012345) in vaše ime. Ime mora biti vpisano z <b>malimi črkami brez šumnikov</b>.
+    </div> 
+    <table>
+        <form method="POST" action="" name="LoginForm">
+            {% csrf_token %}
+            <tr>
+                <td class="one">vpisna številka:</td>
+                <td class="two"><input class="text" type="text" id="username" name="username" /></td>
+                <td class="three"></td>
+            </tr>
+            <tr>
+                <td class="one">ime:</td>
+                <td class="two"><input class="text" type="text" id="password" name="password" /></td>
+                <td class="three"><input type="submit" class="submit" value="&#187;" /></td>
+                <input type="hidden" id="next" name="next" value="/" />
+            </tr>
+        </table>
+    <div id="help">
+        <br /><br />
+        V primeru težav kontaktirajte demonstratorja ali asistenta pri predmetu Statistika.<br />
+<!--        Pri tem pa se identificirajte s svojim imenom in priimkom ter vpisno številko, smerjo in letnikom študija ter pojasnite svoj status (redni, izredni; prvič vpisan, ponavljalec, pavzer, pogojno vpisan itd.). -->
+    </div>
+
+{% endblock %}
