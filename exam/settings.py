@@ -25,9 +25,8 @@ SITE_ID = 1
 ADMIN_MEDIA_PREFIX = '/admin-media/'
 MEDIA_ROOT = 'exam/media/'
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = 'b)%xp225#p_3yvrqt38my7&r#ui=9g8@zidqmf)t9v!&cu4+gc'
-
+MEDIA_URL = '/exam/media/'
+STATIC_URL = '/exam/media/'
 
 ROOT_URLCONF = 'exam.urls'
 
