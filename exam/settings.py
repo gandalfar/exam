@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.admindocs',
     'exam.calc',
+    'gunicorn'
 )
 
 AUTH_PROFILE_MODULE = 'calc.UserProfile'
