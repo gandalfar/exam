@@ -19,11 +19,8 @@ LANGUAGE_CODE = 'sl-si'
 
 SITE_ID = 1
 
-# URL prefix for admin media -- CSS, JavaScript and images. Make sure to use a
-# trailing slash.
-# Examples: "http://foo.com/media/", "/media/".
-ADMIN_MEDIA_PREFIX = '/admin-media/'
 MEDIA_ROOT = 'exam/media/'
+STATIC_URL = '/admin-media/'
 
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'b)%xp225#p_3yvrqt38my7&r#ui=9g8@zidqmf)t9v!&cu4+gc'
