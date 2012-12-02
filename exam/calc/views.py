@@ -182,9 +182,7 @@ def import_data(request, ftype='vars'):
             if var_form.is_valid():
                 if var_form.cleaned_data.get('del_vars') == 'on':
                     Dataset.objects.all().exclude(varname='PS25.2001').exclude(varname='GEB1.2001').delete()
-
-
-
+                    
     ctx = {
         'num_users': User.objects.filter(is_staff=False).count(),
         'num_admin': User.objects.filter(is_staff=True).count(),
