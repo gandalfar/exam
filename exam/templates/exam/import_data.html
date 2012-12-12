@@ -1,0 +1,36 @@
+{% extends "exam/base.html" %}
+
+{% block extrastyle %}
+<style type="text/css">
+	p { text-align: left; }
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>Uvoz podatkov in uporabnikov</h1>
+<br />
+V bazi je trenutno: <a href="/admin/auth/user/?is_staff__exact=0" target="_blank">{{ num_users }} navadnih uporabnikov</a> in <a href="/admin/auth/user/?is_staff__exact=1">{{ num_admin }} administratorjev</a>.
+
+<br/><br/>
+
+
+<h2>Uvoz spremenljivk</h2>
+<a href="/admin/calc/dataset/" target="_blank">Trenutno je {{ num_vars }} spremenljivk</a><br /><br />
+
+<p>1. Prvi korak je zamenjava spremenljivk. S spodnjim gumbom izbrišete vse spremenljivke, katere boste potem nove uvozili.
+<br /><br />
+Spremenljivki - GEB1.2001 in PS25.2001, ne morete izbrisat, ker jih uporabljajo administratorji in testni uporabniki.</p>
+
+
+<br/>
+
+<form method='POST' action="/import_data/?ftype=vars">{% csrf_token %}
+	{{ var_form.as_p }}
+	<br />
+	<input type="submit" value="Izvedi" />
+</form>
+
+<br /><br /><br /><br />
+<h2>Uvoz uporabnikov</h2>
+
+{% endblock %}
