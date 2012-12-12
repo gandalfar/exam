@@ -1,4 +1,3 @@
-from localsettings import *
 import os
 here = lambda x: os.path.join(os.path.dirname(os.path.abspath(__file__)), x)
 
@@ -29,7 +28,7 @@ SECRET_KEY = 'b)%xp225#p_3yvrqt38my7&r#ui=9g8@zidqmf)t9v!&cu4+gc'
 ROOT_URLCONF = 'exam.urls'
 
 TEMPLATE_DIRS = (
-    'exam/templates',
+    
 )
 
 INSTALLED_APPS = (
@@ -48,3 +47,5 @@ EMAIL_SUBJECT_PREFIX = "[FDVexam]"
 SERVER_EMAIL = "jure.cuhalev@guest.arnes.si"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+from localsettings import *
