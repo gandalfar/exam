@@ -13,12 +13,12 @@ Obravnavate podatke za leto <b>{{ var1.year }}</b>
 <br /><br />
 <b>Prva spremenljivka (za vse podnaloge):</b>
 <br /><b>{{ var1 }}:</b> {{ var1.descs }} <br/>
-<i>({{ var1.desce  }})</i><br />
+Eurostat: področje {{ var1.region }}, naslov tabele {{ var1.desce  }}</p>
 
 <br /><br />   
 <b>Druga spremenljivka (za 4. podnalogo):</b>
 <p><b>{{ var2  }}:</b> {{ var2.descs  }} <br/>
-<i>({{ var2.desce  }})</i></p>
+Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
 <br />
 <p>{% if var2.u1 %}{{ var2.u1 }}{% endif %}</p>
 <br />

@@ -15,7 +15,7 @@ urlpatterns = patterns('',
      (r'^answer/remove/(?P<aid>[-\w]+)/$', 'exam.calc.views.remove_answer'),
      
      (r'^summary/$', 'exam.calc.views.summary'),
-     url(r'^import_data/$', 'exam.calc.views.import_data', name="import_data"),
+     # url(r'^import_data/$', 'exam.calc.views.import_data', name="import_data"),
      
      (r'^review/cikel/(?P<cikel>[-\w\s]+)/$', 'exam.calc.views.review'),
      (r'^review/student/(?P<username>[-\w]+)/$', 'exam.calc.views.review_student'),
