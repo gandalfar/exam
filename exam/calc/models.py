@@ -55,11 +55,11 @@ class Dataset(models.Model):
         list_display = ('varname', 'year', 'descs')
         
     def get_selected_countries(self):
-      countries = self.sel.split(', ')[0:18]
+      countries = self.sel.split(',')[0:18]
       
       selected_countries = {}
       for i in countries:
-         if getattr(self, "c"+i):
+         if getattr(self, "c"+i.strip()):
            selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
          
       return selected_countries
@@ -83,6 +83,7 @@ class UserProfile(models.Model):
     
     var1 = models.ForeignKey(Dataset, related_name="userprofile_var1")
     var2 = models.ForeignKey(Dataset, related_name="userprofile_var2")
+    is_special = models.BooleanField(default=False)
 
     class Admin:
         search_fields = ['vpisna']
@@ -133,6 +134,11 @@ class Section(models.Model):
     def get_absolute_url(self):
         return "/%s/%s/" % (self.lecture.url,self.id)
 
+TASK_VISIBLE_CHOICES = (
+    (0, 'Visible to everyone'),
+    (1, 'Visible just to normal users'),
+    (2, 'Visible just to SPSS users')
+)
 class Task(models.Model):
     id = models.AutoField(primary_key=True)
     #FIXME ime polje
@@ -143,6 +149,7 @@ class Task(models.Model):
     #pub_date = models.DateTimeField('date published', auto_now_add=True)
     active = models.BooleanField()
     order  = models.IntegerField(blank=True, null=True)
+    visible_to = models.IntegerField(choices=TASK_VISIBLE_CHOICES,default=0)
     
     class Admin:
         pass
@@ -161,6 +168,7 @@ class Question(models.Model):
     #pub_date = models.DateTimeField('date published', auto_now_add=True)
     active = models.BooleanField()
     order  = models.IntegerField(blank=True, null=True)
+    visible_to = models.IntegerField(choices=TASK_VISIBLE_CHOICES,default=0)    
 
     def __unicode__(self):
         return self.text
@@ -192,3 +200,9 @@ class ExamLogEntry(models.Model):
         
     def __unicode__(self):
         return "%s: %s" % (self.user, self.input)
+
+class CalculatedAnswer(models.Model):
+    var1 = models.ForeignKey(Dataset, related_name='calculated_var1')
+    var2 = models.ForeignKey(Dataset, related_name='calculated_var2')
+    question = models.ForeignKey(Question, default=0)
+

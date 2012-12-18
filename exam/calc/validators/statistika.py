@@ -896,6 +896,9 @@ def nal2_a(uid, q, input, extra, solve=False, return_const=False):
         rezultat = hi2_sp_varianca(var, year)
     elif extra == 'hi2_zg_varianca':
         rezultat = hi2_zg_varianca(var, year)
+
+    # nal2_a://dvostran_spss
+
         
     if const:
       return primerjaj(input, rezultat, solve, const, absolute=absolute, return_const=return_const)
@@ -1006,6 +1009,8 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
     elif extra == 'sto22':
         rezultat = strukturni_odstotki(var1, year)[3]
         const = 0.01
+
+    # nal3_a://dvostran_spss
         
 
     print extra
