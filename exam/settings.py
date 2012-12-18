@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'exam.calc',
     'south',
     'gunicorn',
+    'raven'
 )
 
 AUTH_PROFILE_MODULE = 'calc.UserProfile'
