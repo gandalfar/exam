@@ -55,11 +55,11 @@ class Dataset(models.Model):
         list_display = ('varname', 'year', 'descs')
         
     def get_selected_countries(self):
-      countries = self.sel.split(',')[0:18]
+      countries = self.sel.split(', ')[0:18]
       
       selected_countries = {}
       for i in countries:
-         if getattr(self, "c"+i.strip()):
+         if getattr(self, "c"+i):
            selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
          
       return selected_countries
