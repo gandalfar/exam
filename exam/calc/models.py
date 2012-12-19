@@ -171,7 +171,7 @@ class Question(models.Model):
     visible_to = models.IntegerField(choices=TASK_VISIBLE_CHOICES,default=0)    
 
     def __unicode__(self):
-        return self.text
+        return self.text    
 
 class Answer(models.Model):
     id = models.AutoField(primary_key=True)
@@ -205,4 +205,5 @@ class CalculatedAnswer(models.Model):
     var1 = models.ForeignKey(Dataset, related_name='calculated_var1')
     var2 = models.ForeignKey(Dataset, related_name='calculated_var2')
     question = models.ForeignKey(Question, default=0)
+    value = models.FloatField()
 

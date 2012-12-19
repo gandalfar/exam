@@ -1,5 +1,5 @@
 from exam.calc import models as calc
-from exam.calc.models import Dataset, Section, Task, Answer, Question
+from exam.calc.models import Dataset, Section, Task, Answer, Question, CalculatedAnswer
 import validator_core
 import stats
 from django.contrib.auth.models import User
@@ -844,15 +844,22 @@ def nal1_c(uid, q, input, extra, solve=False, return_const=False):
 validator_core.register_validator('nal1_c', nal1_c)
 
 def nal1_e(uid, q, input, extra, solve=False, return_const=False):
-    var = variabla(uid, 'var1')
-    year = variabla(uid, 'var1.year')
+    var1 = variabla(uid, 'var1')
+    year1 = variabla(uid, 'var1.year')
 
-    if extra == 'kvartil1':
-        rezultat = kvartil(var, year, 0.25)
-    elif extra == 'kvartil2':
-        rezultat = kvartil(var, year, 0.5)
-    elif extra == 'kvartil3':
-        rezultat = kvartil(var, year, 0.75)
+    var2 = variabla(uid, 'var2')
+
+    user = User.objects.get(username=uid)
+    if user.get_profile().is_special:
+        rezultat = CalculatedAnswer.objects.get(var1=var1, var2=var2, question=q).value
+
+    if not locals().get('rezultat'):
+        if extra == 'kvartil1':
+            rezultat = kvartil(var1, year1, 0.25)
+        elif extra == 'kvartil2':
+            rezultat = kvartil(var1, year1, 0.5)
+        elif extra == 'kvartil3':
+            rezultat = kvartil(var1, year1, 0.75)
 
     inp = input.replace(',','.')
     return primerjaj(inp, rezultat, solve, return_const=return_const)
@@ -861,43 +868,51 @@ validator_core.register_validator('nal1_e', nal1_e)
 
 def nal2_a(uid, q, input, extra, solve=False, return_const=False):
     var = variabla(uid, 'var1')
-    year = variabla(uid, 'var1.year')
-    
+    var1 = var
+    year= variabla(uid, 'var1.year')
+
+    var2 = variabla(uid, 'var2')
     const = None
     absolute = False
-    
-    if extra == 'vzorcna_aritmeticna':
-        rezultat = vzorcna_aritmeticna(var, year)
-    elif extra == 'vzorcna_varianca':
-        rezultat = vzorcna_varianca(var, year)[0]
-    elif extra == 'std_odklon':
-        rezultat = vzorcna_varianca(var, year)[1]
-    elif extra == 'spodnja_as':
-        rezultat = zaupanje_aritmeticna(var, year)[0]
-        const = 0.005
-    elif extra == 'zgornja_as':
-        rezultat = zaupanje_aritmeticna(var, year)[1]
-        const = 0.005
-    elif extra == 'spodnja_va':
-        rezultat = zaupanje_varianca(var, year)[0]
-        const = 0.05
-    elif extra == 'zgornja_va':
-        rezultat = zaupanje_varianca(var, year)[1]
-        const = 0.05        
-    elif extra == 'spodnja_std':
-        rezultat = zaupanje_varianca(var, year)[2]
-        const = 0.03
-    elif extra == 'zgornja_std':
-        rezultat = zaupanje_varianca(var, year)[3]
-        const = 0.03
-    elif extra == 't_vrednost':
-        rezultat = t_vrednost(var, year)
-    elif extra == 'hi2_sp_varianca':
-        rezultat = hi2_sp_varianca(var, year)
-    elif extra == 'hi2_zg_varianca':
-        rezultat = hi2_zg_varianca(var, year)
 
-    # nal2_a://dvostran_spss
+    user = User.objects.get(username=uid)
+    if user.get_profile().is_special:
+        try:
+            rezultat = CalculatedAnswer.objects.get(var1=var1, var2=var2, question=q).value
+        except CalculatedAnswer.DoesNotExist:
+            pass
+
+    if not locals().get('rezultat'):
+        if extra == 'vzorcna_aritmeticna':
+            rezultat = vzorcna_aritmeticna(var, year)
+        elif extra == 'vzorcna_varianca':
+            rezultat = vzorcna_varianca(var, year)[0]
+        elif extra == 'std_odklon':
+            rezultat = vzorcna_varianca(var, year)[1]
+        elif extra == 'spodnja_as':
+            rezultat = zaupanje_aritmeticna(var, year)[0]
+            const = 0.005
+        elif extra == 'zgornja_as':
+            rezultat = zaupanje_aritmeticna(var, year)[1]
+            const = 0.005
+        elif extra == 'spodnja_va':
+            rezultat = zaupanje_varianca(var, year)[0]
+            const = 0.05
+        elif extra == 'zgornja_va':
+            rezultat = zaupanje_varianca(var, year)[1]
+            const = 0.05        
+        elif extra == 'spodnja_std':
+            rezultat = zaupanje_varianca(var, year)[2]
+            const = 0.03
+        elif extra == 'zgornja_std':
+            rezultat = zaupanje_varianca(var, year)[3]
+            const = 0.03
+        elif extra == 't_vrednost':
+            rezultat = t_vrednost(var, year)
+        elif extra == 'hi2_sp_varianca':
+            rezultat = hi2_sp_varianca(var, year)
+        elif extra == 'hi2_zg_varianca':
+            rezultat = hi2_zg_varianca(var, year)
 
         
     if const:
@@ -949,71 +964,74 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
     const = None
     absolute = False
 
-    if extra == 'sdomed':
-        rezultat = kontingencna(var1, year)[0]
-    elif extra == 'ndomed':
-        rezultat = kontingencna(var1, year)[1]
-    elif extra == 'snadmed':
-        rezultat = kontingencna(var1, year)[2]
-    elif extra == 'nnadmed':
-        rezultat = kontingencna(var1, year)[3]
-    elif extra == 'hsdomed':
-        rezultat = hikvadrat(var1, year)[1]
-    elif extra == 'hndomed':
-        rezultat = hikvadrat(var1, year)[2]
-    elif extra == 'hsnadmed':
-        rezultat = hikvadrat(var1, year)[3]
-    elif extra == 'hnnadmed':
-        rezultat = hikvadrat(var1, year)[4]
-    elif extra == 'alpha':
-        rezultat = alpha(var1, year)
-        const = 0.005
-    elif extra == 'hikvadrat':
-        rezultat = hikvadrat(var1, year)[0]
-        const = 0.01
-    elif extra == 'kontingencni':
-        rezultat = kontingencni(var1, year)[0]
-        const = 0.005
-    elif extra == 'kontingencnipop':
-        rezultat = kontingencni(var1, year)[2]
-        const = 0.005
-    elif extra == 'as1':
-        rezultat = nal_32b(var1, year, var2, year)[0]
-    elif extra == 'as2':
-        rezultat = nal_32b(var1, year, var2, year)[1]
-    elif extra == 'rxy':
-        rezultat = nal_32b(var1, year, var2, year)[2]
-    elif extra == 'texp':
-        const = 0.01
-        rezultat = nal_32b(var1, year, var2, year)[3]
-    elif extra == 'cregr':
-        return cregr(var1, year, var2, year, input) 
-    elif extra == 'cregr_a':
-        rezultat = cregr_ab(var1, year, var2, year)[0]
-    elif extra == 'cregr_b':
-        rezultat = cregr_ab(var1, year, var2, year)[1]
-    elif extra == 'detr':
-        rezultat = nal_32b(var1, year, var2, year)[6]
-        const = 0.005
-    elif extra == 'sno':
-        rezultat = nal_32b(var1, year, var2, year)[7]
-    elif extra == 'sto11':
-        rezultat = strukturni_odstotki(var1, year)[0]
-        const = 0.01
-    elif extra == 'sto12':
-        rezultat = strukturni_odstotki(var1, year)[1]
-        const = 0.01
-    elif extra == 'sto21':
-        rezultat = strukturni_odstotki(var1, year)[2]
-        const = 0.01
-    elif extra == 'sto22':
-        rezultat = strukturni_odstotki(var1, year)[3]
-        const = 0.01
+    user = User.objects.get(username=uid)
+    if user.get_profile().is_special:
+        try:
+            rezultat = CalculatedAnswer.objects.get(var1=var1, var2=var2, question=q).value
+        except CalculatedAnswer.DoesNotExist:
+            pass
 
-    # nal3_a://dvostran_spss
-        
-
-    print extra
+    if not locals().get('rezultat'):
+        if extra == 'sdomed':
+            rezultat = kontingencna(var1, year)[0]
+        elif extra == 'ndomed':
+            rezultat = kontingencna(var1, year)[1]
+        elif extra == 'snadmed':
+            rezultat = kontingencna(var1, year)[2]
+        elif extra == 'nnadmed':
+            rezultat = kontingencna(var1, year)[3]
+        elif extra == 'hsdomed':
+            rezultat = hikvadrat(var1, year)[1]
+        elif extra == 'hndomed':
+            rezultat = hikvadrat(var1, year)[2]
+        elif extra == 'hsnadmed':
+            rezultat = hikvadrat(var1, year)[3]
+        elif extra == 'hnnadmed':
+            rezultat = hikvadrat(var1, year)[4]
+        elif extra == 'alpha':
+            rezultat = alpha(var1, year)
+            const = 0.005
+        elif extra == 'hikvadrat':
+            rezultat = hikvadrat(var1, year)[0]
+            const = 0.01
+        elif extra == 'kontingencni':
+            rezultat = kontingencni(var1, year)[0]
+            const = 0.005
+        elif extra == 'kontingencnipop':
+            rezultat = kontingencni(var1, year)[2]
+            const = 0.005
+        elif extra == 'as1':
+            rezultat = nal_32b(var1, year, var2, year)[0]
+        elif extra == 'as2':
+            rezultat = nal_32b(var1, year, var2, year)[1]
+        elif extra == 'rxy':
+            rezultat = nal_32b(var1, year, var2, year)[2]
+        elif extra == 'texp':
+            const = 0.01
+            rezultat = nal_32b(var1, year, var2, year)[3]
+        elif extra == 'cregr':
+            return cregr(var1, year, var2, year, input) 
+        elif extra == 'cregr_a':
+            rezultat = cregr_ab(var1, year, var2, year)[0]
+        elif extra == 'cregr_b':
+            rezultat = cregr_ab(var1, year, var2, year)[1]
+        elif extra == 'detr':
+            rezultat = nal_32b(var1, year, var2, year)[6]
+            const = 0.005
+        elif extra == 'sno':
+            rezultat = nal_32b(var1, year, var2, year)[7]
+        elif extra == 'sto11':
+            rezultat = strukturni_odstotki(var1, year)[0]
+            const = 0.01
+        elif extra == 'sto12':
+            rezultat = strukturni_odstotki(var1, year)[1]
+            const = 0.01
+        elif extra == 'sto21':
+            rezultat = strukturni_odstotki(var1, year)[2]
+            const = 0.01
+        elif extra == 'sto22':
+            rezultat = strukturni_odstotki(var1, year)[3]
+            const = 0.01
                     
     if const:
         return primerjaj(input, rezultat, solve, const, absolute=absolute, return_const=return_const)

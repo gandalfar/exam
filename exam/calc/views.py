@@ -42,15 +42,21 @@ def lecture(request, lecture):
 
 @login_required
 def task(request, lecture, section):
-  
     this_section = Section.objects.get(pk=section)
     #FIXME- lecture mora biti section
     task_list = Task.objects.filter(lecture__exact=this_section.id, active__exact=True).order_by('order');
   
     #questions = list(Question.objects.filter(task__lecture__url__exact=lecture, task=this_task.id))
     #questions = task_list[0].question_set.all()
-    questions = Question.objects.filter(task__lecture__exact=this_section.id, active__exact=True).order_by('order', 'id')
-    
+    is_special = request.user.get_profile().is_special
+    q_kwargs = {
+        'task__lecture__exact':this_section.id,
+        'active__exact':True
+    }
+    if is_special: q_kwargs['visible_to__in'] = [0,2]
+    else: q_kwargs['visible_to__in'] = [0,1]
+    questions = Question.objects.filter(**q_kwargs).order_by('order', 'id')
+
     answers = Answer.objects.filter(question__task__lecture=this_section.id, 
                                     user=request.user)
     #answers = questions[0].answer_set.all()
@@ -195,6 +201,16 @@ def import_data(request, ftype='vars'):
 @login_required
 def summary(request):
     user = request.user
+    is_special = request.user.get_profile().is_special
+    # because we don't have access to good python code in template
+    # (and I don't feel like writing a templatetag)
+    # we just make if comparison here
+    if is_special:
+        qm1 = 0
+        qm2 = 2
+    else:
+        qm1= 0
+        qm2 = 1
     var1 = request.user.get_profile().var1
     var2 = request.user.get_profile().var2
     
@@ -204,5 +220,8 @@ def summary(request):
                               {'student': user,
                                'section_list': section_list,
                                'var1': var1,
-                               'var2': var2},
+                               'var2': var2,
+                               'qm1': qm1,
+                               'qm2': qm2
+                               },
                               context_instance=RequestContext(request))

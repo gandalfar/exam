@@ -21,12 +21,14 @@
   </tr>
   {% for task in section.task_set.all %}{% if task.active %}  
     {% for question in task.question_set.all|order_by:"order" %}{% if question.active %}
+      {% if question.visible_to == qm1 or question.visible_to == qm2 %}
       {% show_correct question.id student.id %}
-      <tr>
-        <td class="first">{{ question|safe }}</td>
-        <td class={% if student_ans.correct %}"right"{% else %}"wrong"{% endif %}>{{ student_ans.input }}</td>
-        <td>{% if student_ans.correct %}&#10003;{% endif %}</td>
-      </tr>
+        <tr>
+          <td class="first">{{ question|safe }}</td>
+          <td class={% if student_ans.correct %}"right"{% else %}"wrong"{% endif %}>{{ student_ans.input }}</td>
+          <td>{% if student_ans.correct %}&#10003;{% endif %}</td>
+        </tr>
+      {% endif %}
     {% endif %}{% endfor %}    
   {% endif %}{% endfor %}
 </table><br /><br />

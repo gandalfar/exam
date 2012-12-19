@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from exam.calc.models import Lecture, Task, Section, Question, Answer, ExamLogEntry, Dataset, UserProfile
+from exam.calc.models import Lecture, Task, Section, Question, Answer, ExamLogEntry, Dataset, UserProfile, CalculatedAnswer
 
 class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ['vpisna', 'user__first_name', 'user__last_name', 'var1__varname', 'var2__varname']
@@ -37,3 +37,4 @@ admin.site.register(Task, TaskAdmin)
 admin.site.register(Section)
 admin.site.register(Dataset, DatasetAdmin)
 admin.site.register(Answer, AnswerAdmin)
+admin.site.register(CalculatedAnswer)
