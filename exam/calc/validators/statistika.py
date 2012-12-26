@@ -276,12 +276,12 @@ def kontingencna(var, year):
     t12 = 0
     t22 = 0
     for i in stare:
-        if i < ms:
+        if i <= ms:
             t11 = t11 + 1
         else:
             t12 = t12 + 1
     for i in nove:
-        if i < mn:
+        if i <= mn:
             t21 = t21 + 1
         else:
             t22 = t22 + 1
