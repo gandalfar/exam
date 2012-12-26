@@ -17,7 +17,7 @@ def return_None(x):
       
 def main(options):
     wb = xlrd.open_workbook(sys.argv[2])
-    sh = wb.sheet_by_index(0)
+    sh = wb.sheet_by_index(3)
 
     # CalculatedAnswer.objects.all().delete()
     # return
@@ -28,6 +28,8 @@ def main(options):
 
         var1_code = sh.cell_value(row, 3)
         var2_code = sh.cell_value(row, 5)
+
+        print var1_code
 
         var1 = Dataset.objects.get(varname=var1_code)
         var2 = Dataset.objects.get(varname=var2_code)
@@ -48,7 +50,7 @@ def main(options):
         var1.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
         var2.save()
 
-        for q_id, val_no in [[12,7],[13,8],[14,9], [19,10], [20,11], [62, 12], [63,13]]:
+        for q_id, val_no in [[12,7],[13,8],[14,9], [19,10], [20,11], [62, 12], [63,13], [51,14]]:
             q = Question.objects.get(pk=q_id)
             val = sh.cell_value(row, val_no)
             CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
