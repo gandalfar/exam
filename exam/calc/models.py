@@ -59,8 +59,8 @@ class Dataset(models.Model):
       
       selected_countries = {}
       for i in countries:
-         if getattr(self, "c"+i):
-           selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
+        if not getattr(self, "c"+i) == None:
+            selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
          
       return selected_countries
 

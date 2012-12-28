@@ -299,77 +299,74 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
 		<th>{{ var1 }}</th>
 		<th>{{ var2 }}</th>
 	</tr>
-        {% if d.c1 %}
-
+    {% if d.c1 or d.c1 == 0 %}
     	<tr>
-		<td>Avstrija</td>
-		{% if not var1.c1 %}
-		  <td>-</td>
-		{% else %}
-    		<td>{{ var1.c1 }}</td>		
-		{% endif %}
-		
-		{% if not var2.c1 %}
-		  <td>-</td>
-		{% else %}
-    		<td>{{ var2.c1 }}</td>		
-		{% endif %}
+                <td>Avstrija</td>
+            	    {% if not var1.c1 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c1 }}</td>		
+            		{% endif %}
+            		
+            		{% if not var2.c1 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c1 }}</td>		
+            		{% endif %}
     	</tr>
-        {% endif %}
-
-        {% if d.c2 %}
-    	<tr>
-		<td>Belgija</td>
-		{% if not var1.c2 %}
-		  <td>-</td>
-		{% else %}
-    		<td>{{ var1.c2 }}</td>		
-		{% endif %}
-		
-		{% if not var2.c2 %}
-		  <td>-</td>
-		{% else %}
-    		<td>{{ var2.c2 }}</td>		
-		{% endif %}
-        {% endif %}
-        
-    {% if d.c3 %}
-    <tr>
-		<td>Bolgarija</td>
-  		{% if not var1.c3 %}
-  		  <td>-</td>
-  		{% else %}
-      		<td>{{ var1.c3 }}</td>		
-  		{% endif %}
-		
-  		{% if not var2.c3 %}
-  		  <td>-</td>
-  		{% else %}
-      		<td>{{ var2.c3 }}</td>		
-  		{% endif %}
-      	<tr/>
     {% endif %}
 
-    {% if d.c4 %}
-      <tr>
-      <td>Ciper</td>
-  		{% if not var1.c4 %}
-  		  <td>-</td>
-  		{% else %}
-      		<td>{{ var1.c4 }}</td>		
-  		{% endif %}
+    {% if d.c2 or d.c2 == 0 %}
+    <tr>
+        		<td>Belgija</td>
+            		{% if not var1.c2 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var1.c2 }}</td>		
+            		{% endif %}
+            		
+            		{% if not var2.c2 %}
+            		  <td>-</td>
+            		{% else %}
+                		<td>{{ var2.c2 }}</td>		
+            		{% endif %}
+    </tr>
+    {% endif %}
+        
+    {% if d.c3 or d.c3 == 0 %}
+    <tr>
+        		<td>Bolgarija</td>
+              		{% if not var1.c3 %}
+              		  <td>-</td>
+              		{% else %}
+                  		<td>{{ var1.c3 }}</td>		
+              		{% endif %}
+            		
+              		{% if not var2.c3 %}
+              		  <td>-</td>
+              		{% else %}
+                  		<td>{{ var2.c3 }}</td>		
+              		{% endif %}
+    <tr/>
+    {% endif %}
 
-  		{% if not var2.c4 %}
-  		  <td>-</td>
-  		{% else %}
-      		<td>{{ var2.c4 }}</td>		
-  		{% endif %}
-        <tr/>  
-        {% endif %}
-        
-        
-        
-        {% if d.c5 %}
+    {% if d.c4 or d.c4 == 0 %}
+      <tr>
+                <td>Ciper</td>
+              		{% if not var1.c4 %}
+              		  <td>-</td>
+              		{% else %}
+                  		<td>{{ var1.c4 }}</td>		
+              		{% endif %}
+
+              		{% if not var2.c4 %}
+              		  <td>-</td>
+              		{% else %}
+                  		<td>{{ var2.c4 }}</td>		
+              		{% endif %}
+    <tr/>  
+    {% endif %}
+    {% if d.c5 or d.c5 == 0 %}
         <tr>
                 <td>Češka republika</td>
             		{% if not var1.c5 %}
@@ -384,9 +381,9 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c5 }}</td>		
             		{% endif %}
         <tr/>  
-        {% endif %}
-        {% if d.c6 %}
-        <tr>
+    {% endif %}
+    {% if d.c6 or d.c6 == 0 %}
+    <tr>
                 <td>Danska</td>
             		{% if not var1.c6 %}
             		  <td>-</td>
@@ -399,9 +396,9 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% else %}
                 		<td>{{ var2.c6 }}</td>		
             		{% endif %}
-        <tr/>  
-        {% endif %}
-        {% if d.c7 %}
+    <tr/>  
+    {% endif %}
+        {% if d.c7 or d.c7 == 0 %}
         <tr>
                 <td>Estonija</td>
             		{% if not var1.c7 %}
@@ -417,7 +414,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c8 %}
+        {% if d.c8 or d.c8 == 0 %}
         <tr>
                 <td>Finska</td>
             		{% if not var1.c8 %}
@@ -433,7 +430,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c9 %}
+        {% if d.c9 or d.c9 == 0 %}
         <tr>
                 <td>Francija</td>
             		{% if not var1.c9 %}
@@ -449,7 +446,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c10 %}
+        {% if d.c10 or d.c10 == 0 %}
         <tr>
                 <td>Grčija</td>
             		{% if not var1.c10 %}
@@ -465,7 +462,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-		{% if d.c11 %}
+		{% if d.c11 or d.c11 == 0 %}
         <tr>
                 <td>Irska</td>
             		{% if not var1.c11 %}
@@ -481,7 +478,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
 		{% endif %}
-        {% if d.c12 %}
+        {% if d.c12 or d.c12 == 0 %}
         <tr>
                 <td>Italija</td>
             		{% if not var1.c12 %}
@@ -497,7 +494,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c13 %}
+        {% if d.c13 or d.c13 == 0 %}
         <tr>
                 <td>Latvija</td>
             		{% if not var1.c13 %}
@@ -513,7 +510,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c14 %}
+        {% if d.c14 or d.c14 == 0 %}
         <tr>
                 <td>Litva</td>
             		{% if not var1.c14 %}
@@ -529,7 +526,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c15 %}
+        {% if d.c15 or d.c15 == 0 %}
         <tr>
                 <td>Luksemburg</td>
             		{% if not var1.c15 %}
@@ -545,7 +542,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c16 %}
+        {% if d.c16 or d.c16 == 0 %}
         <tr>
                 <td>Madžarska</td>
             		{% if not var1.c16 %}
@@ -561,7 +558,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c17 %}
+        {% if d.c17 or d.c17 == 0 %}
         <tr>
                 <td>Malta</td>
             		{% if not var1.c17 %}
@@ -577,7 +574,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>  
         {% endif %}
-        {% if d.c18 %}
+        {% if d.c18 or d.c18 == 0 %}
         <tr>
                 <td>Nemčija</td>
             		{% if not var1.c18 %}
@@ -593,7 +590,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>     
         {% endif %}
-        {% if d.c19 %}
+        {% if d.c19 or d.c19 == 0 %}
         <tr>
                 <td>Nizozemska</td>
             		{% if not var1.c19 %}
@@ -609,7 +606,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>     
         {% endif %}
-        {% if d.c20 %}
+        {% if d.c20 or d.c20 == 0 %}
         <tr>
                 <td>Poljska</td>
             		{% if not var1.c20 %}
@@ -625,7 +622,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
             		{% endif %}
         <tr/>     
         {% endif %}
-        {% if d.c21 %}
+        {% if d.c21 or d.c21 == 0 %}
         <tr>
                 <td>Portugalska</td>
             		{% if not var1.c21 %}
@@ -640,7 +637,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c21 }}</td>		
             		{% endif %}        <tr/>     
         {% endif %}
-        {% if d.c22 %}
+        {% if d.c22 or d.c22 == 0 %}
         <tr>
                 <td>Romunija</td>
             		{% if not var1.c22 %}
@@ -655,7 +652,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c22 }}</td>		
             		{% endif %}        <tr/>            
         {% endif %}
-        {% if d.c23 %}
+        {% if d.c23 or d.c23 == 0 %}
         <tr>
                 <td>Slovaška</td>
             		{% if not var1.c23 %}
@@ -670,7 +667,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c23 }}</td>		
             		{% endif %}        <tr/>            
         {% endif %}
-        {% if d.c24 %}
+        {% if d.c24 or d.c24 == 0 %}
         <tr>
                 <td>Slovenija</td>
             		{% if not var1.c24 %}
@@ -685,7 +682,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c24 }}</td>		
             		{% endif %}        <tr/>            
         {% endif %}
-        {% if d.c25 %}
+        {% if d.c25 or d.c25 == 0 %}
         <tr>
                 <td>Španija</td>
             		{% if not var1.c25 %}
@@ -700,7 +697,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c25 }}</td>		
             		{% endif %}        <tr/>            	
         {% endif %}
-        {% if d.c26 %}
+        {% if d.c26 or d.c26 == 0 %}
         <tr>
                 <td>Švedska</td>
             		{% if not var1.c26 %}
@@ -715,7 +712,7 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
                 		<td>{{ var2.c26 }}</td>		
             		{% endif %}        <tr/>            	
         {% endif %}
-        {% if d.c27 %}
+        {% if d.c27 or d.c27 == 0 %}
         <tr>
                 <td>Velika Britanija</td>
             		{% if not var1.c27 %}
