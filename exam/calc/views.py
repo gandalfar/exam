@@ -3,13 +3,14 @@
 from django.conf import settings
 from django.shortcuts import get_object_or_404, render_to_response, render
 from django.template import RequestContext
-from exam.calc.models import Lecture, Task, Section, Question, Answer, ExamLogEntry, Dataset
+from exam.calc.models import Lecture, Task, Section, Question, Answer, ExamLogEntry, Dataset, UserProfile
 from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from exam.calc.validators import validator_core
 from django.contrib.auth.models import User
 from pprint import pprint
@@ -116,30 +117,21 @@ def task(request, lecture, section):
 staff_required = user_passes_test(lambda u: u.is_staff)
 
 @staff_required
+def review_index(request):
+    ctx = {'cikel_list': UserProfile.objects.values_list('izvajalec').distinct()}
+    return render(request, 'exam/review_index.html', ctx)
+
+@staff_required
 def review(request, cikel):
-    # if cikel == "Stari":
-    #   cikel = "Stari program"
     
     exclude = {}
     lookup = {}
     q_lookup = None
-    if cikel == 'R1Z':
-        lookup = {'userprofile__studijsko_leto__exact': '2010/11',
-                  'userprofile__izvajalec__contains': 'Z'
-                 }
-    elif cikel == 'R1P':
-        lookup = {'userprofile__studijsko_leto__exact': '2010/11',
-                  'userprofile__izvajalec__contains': 'P'
-                 }
-    elif cikel == 'IZ':
-        lookup = {'userprofile__izvajalec__startswith': 'I',
-                 }
-    elif cikel == 'ST':
-        q_lookup = User.objects.exclude(userprofile__studijsko_leto__contains='2010/11').exclude(userprofile__cikel='Ostalo')
-    elif cikel == 'OS':
-        lookup = {'userprofile__cikel__exact': 'Ostalo',
-                 }
-    
+
+    lookup = {
+        'userprofile__izvajalec__startswith': cikel
+    }
+
     section_list = Section.objects.filter(active__exact=True)
     
     if q_lookup:
@@ -147,6 +139,15 @@ def review(request, cikel):
     else:
         user_list = User.objects.filter(**lookup).exclude(**exclude).select_related()
     
+    paginator = Paginator(user_list, 50)
+    page = request.GET.get('page')
+    try:
+        user_list = paginator.page(page)
+    except PageNotAnInteger:
+        user_list = paginator.page(1)
+    except EmptyPage:
+        user_list = paginator.page(paginator.num_pages)
+        
     return render_to_response('exam/review_detail.html', 
                               {'user_list': user_list,
                               'section_list': section_list,},
@@ -155,12 +156,23 @@ def review(request, cikel):
 @staff_required
 def review_student(request, username):
     user = get_object_or_404(User, username=username)
-    
+    is_special = request.user.get_profile().is_special
+
+    if is_special:
+        qm1 = 0
+        qm2 = 2
+    else:
+        qm1= 0
+        qm2 = 1
+
     section_list = Section.objects.filter(active__exact=True)
     
     return render_to_response('exam/review_student.html',
                               {'student': user,
-                               'section_list': section_list,},                              
+                               'section_list': section_list,
+                               'is_special': is_special,
+                               'qm1':qm1,
+                               'qm2':qm2},
                               context_instance=RequestContext(request))
 
 def remove_answer(request, aid):

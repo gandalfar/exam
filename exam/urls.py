@@ -19,7 +19,7 @@ urlpatterns = patterns('',
      
      (r'^review/cikel/(?P<cikel>[-\w\s]+)/$', 'exam.calc.views.review'),
      (r'^review/student/(?P<username>[-\w]+)/$', 'exam.calc.views.review_student'),
-     (r'^review/$', 'django.views.generic.simple.direct_to_template', {'template':'exam/review_index.html'}),
+     (r'^review/$', 'exam.calc.views.review_index'),
      (r'^$', 'exam.calc.views.index'),
     
      # most greedy comes last

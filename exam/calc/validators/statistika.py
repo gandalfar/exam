@@ -971,7 +971,7 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
         except CalculatedAnswer.DoesNotExist:
             pass
 
-    if not locals().get('rezultat'):
+    if not locals().get('rezultat', None):
         if extra == 'sdomed':
             rezultat = kontingencna(var1, year)[0]
         elif extra == 'ndomed':
@@ -1032,7 +1032,7 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
         elif extra == 'sto22':
             rezultat = strukturni_odstotki(var1, year)[3]
             const = 0.01
-                    
+
     if const:
         return primerjaj(input, rezultat, solve, const, absolute=absolute, return_const=return_const)
     else:

@@ -22,12 +22,14 @@
   </tr>
   {% for task in section.task_set.all|order_by:"order" %}{% if task.active %}
     {% for question in task.question_set.all %}{% if question.active %}
+      {% if question.visible_to == qm1 or question.visible_to == qm2 %}
       {% show_correct question.id student.id %}
       <tr>
         <td>{{ question|safe }} {% ifequal student.get_profile.cikel "Ostalo" %}({% show_precision question.id student.id %}%){% endifequal %}</td>
         <td class={% if student_ans.correct %}"right"{% else %}"wrong"{% endif %}>{{ student_ans.input }}</td>
         <td>{{ calc_ans|stringformat:"01.4f" }}</td>
       </tr>
+      {% endif %}
     {% endif %}{% endfor %}    
   {% endif %}{% endfor %}
 </table><br /><br />
