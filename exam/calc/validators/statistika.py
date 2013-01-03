@@ -500,7 +500,7 @@ def zaupanje_aritmeticna(var, year):
     #z = 2.093
     
     print n, "artimeticna", var, year
-    probability = 0.10
+    probability = 0.05
     
     z = round(statistics.tinv(probability, n-1), 2)
     print "z is", z
