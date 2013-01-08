@@ -156,7 +156,8 @@ def review(request, cikel):
 @staff_required
 def review_student(request, username):
     user = get_object_or_404(User, username=username)
-    is_special = request.user.get_profile().is_special
+    is_special = user.get_profile().is_special
+    print is_special
 
     if is_special:
         qm1 = 0

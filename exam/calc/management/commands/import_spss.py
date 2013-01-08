@@ -22,7 +22,7 @@ def main(options):
     # CalculatedAnswer.objects.all().delete()
     # return
 
-    for row in range(2, 39):
+    for row in range(2, sh.nrows):
         vpisna = int(sh.cell_value(row, 0))
         ime = sh.cell_value(row,2)
 

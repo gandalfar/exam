@@ -3,7 +3,8 @@
 {% block content %}
 {% load correcttag %}
 
-<b>{{ student.first_name }} {{ student.last_name }} - {{ student.get_profile.vpisna }} - {% now "d.n.Y" %} </b>
+<b>{{ student.first_name }} {{ student.last_name }} - {{ student.get_profile.vpisna }} - {% now "d.n.Y" %} 
+{% if is_special %}(uporablja SPSS odgovore){% endif %}</b>
 <br /><br />
 <b>{{ student.get_profile.var1 }}:</b> {{ student.get_profile.var1.descs }} <i>({{ student.get_profile.var1.desce  }})</i><br />
 

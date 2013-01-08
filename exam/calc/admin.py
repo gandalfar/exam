@@ -21,20 +21,22 @@ class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'active', 'order')
 
 class QuestionAdmin(admin.ModelAdmin):
-    list_display = ('task', 'text', 'active', 'order', 'id')
-    list_filter = ('task',)
+    list_display = ('task', 'text', 'active', 'order', 'id', 'visible_to')
+    list_filter = ('task','visible_to')
 
 class AnswerAdmin(admin.ModelAdmin):
     list_display = ('input', 'question', 'user', 'correct', 'id')
     search_fields = ['user__first_name', 'user__last_name', 'user__userprofile__vpisna']    
     list_filter = ('correct',)
 
+class CalculatedAnswerAdmin(admin.ModelAdmin):
+    list_display = ('var1', 'var2', 'question', 'value')
+    search_fields = ('var1__varname', 'var2__varname')
+
 admin.site.register(Question, QuestionAdmin)
-
 admin.site.register(ExamLogEntry, ExamLogEntryAdmin)
-
 admin.site.register(Task, TaskAdmin)
 admin.site.register(Section)
 admin.site.register(Dataset, DatasetAdmin)
 admin.site.register(Answer, AnswerAdmin)
-admin.site.register(CalculatedAnswer)
+admin.site.register(CalculatedAnswer, CalculatedAnswerAdmin)
