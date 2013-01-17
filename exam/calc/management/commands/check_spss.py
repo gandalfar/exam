@@ -18,7 +18,7 @@ def return_None(x):
       
 def main(options):
     wb = xlrd.open_workbook(sys.argv[2])
-    sh = wb.sheet_by_index(3)
+    sh = wb.sheet_by_index(0)
 
     # CalculatedAnswer.objects.all().delete()
     # return
@@ -65,11 +65,12 @@ def main(options):
                 calc = CalculatedAnswer.objects.get(var1=var1, var2=var2, question=q)
                 delta = abs(calc.value - val)
                 if delta > 0.01:
-                    print calc.value, val
+                    print '%s   Changing value from %.4f to %.4f' % (vpisna, calc.value, val)
+                    calc.value = val
+                    calc.save()
             except CalculatedAnswer.DoesNotExist:
                 # CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
-                print q_id, val_no
-                print vpisna
+                print '%s   Changing old value: %s to %s' % (vpisna, q_id, val_no)
 
         #     print q
         
