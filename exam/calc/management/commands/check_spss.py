@@ -18,7 +18,7 @@ def return_None(x):
       
 def main(options):
     wb = xlrd.open_workbook(sys.argv[2])
-    sh = wb.sheet_by_index(0)
+    sh = wb.sheet_by_index(3)
 
     # CalculatedAnswer.objects.all().delete()
     # return
@@ -59,15 +59,15 @@ def main(options):
 
         for q_id, val_no in [[12,7],[13,8],[14,9], [19,10], [20,11], [62, 12], [63,13], [51,14]]:
             q = Question.objects.get(pk=q_id)
-            val = sh.cell_value(row, val_no)
+            val = float(sh.cell_value(row, val_no))
             # CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
             try:
                 calc = CalculatedAnswer.objects.get(var1=var1, var2=var2, question=q)
                 delta = abs(calc.value - val)
                 if delta > 0.01:
                     print '%s   Changing value from %.4f to %.4f' % (vpisna, calc.value, val)
-                    calc.value = val
-                    calc.save()
+                    # calc.value = val
+                    # calc.save()
             except CalculatedAnswer.DoesNotExist:
                 # CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
                 print '%s   Changing old value: %s to %s' % (vpisna, q_id, val_no)
