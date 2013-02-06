@@ -65,7 +65,7 @@ def nal_32b(var1, year1, var2, year2):
       if not v1.has_key(i):
         del(v2[i])
 
-    # iz drugega seznama je treba zbrisat tiste vnose, ki jih ni v drugem
+    # iz drugega seznama je treba zbrisat tiste vnose, ki jih ni v prvem
     temp = dict(v1)
     for i in temp:
         try:
@@ -96,14 +96,16 @@ def nal_32b(var1, year1, var2, year2):
     as1 = stats.lmean(sez1)
     as2 = stats.lmean(sez2)
 
-
     c = 0
     d = 0
     e = 0
     for i in range(0, n):
+
         c = c + (sez1[i] - as1)*(sez2[i] - as2)
         d = d + (sez1[i] - as1)**2
         e = e + (sez2[i] - as2)**2
+
+        print sez1[i], sez2[i], c, d, e
     rxy = round(c / math.sqrt(d*e),4)
 
     texp = (rxy*math.sqrt(n-2)) / math.sqrt(1 - rxy**2) 
@@ -425,6 +427,7 @@ def seznam(var, year):
     return x, y
 
 def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=False):
+    print input, rezultat, solve, const, absolute, return_const
     if return_const:
       return const
       
@@ -439,6 +442,8 @@ def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=
     else:
         i1 = rezultat * (1 - const)
         i2 = rezultat * (1 + const)
+
+        print i1, i2
 
     if solve:
       if type(rezultat) == list:
@@ -483,7 +488,7 @@ def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=
         else:
             r = False
 
-    print "Primerjam %s in %s pri %s in je %s" % (input, rezultat, const, r)
+    print "Primerjam %s in %s pri %s in je %s [%s, %s]" % (input, rezultat, const, r, i1, i2)
     
     return r
 
@@ -1005,6 +1010,8 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
         elif extra == 'as2':
             rezultat = nal_32b(var1, year, var2, year)[1]
         elif extra == 'rxy':
+            # const = 0.005
+            print 'foo', nal_32b(var1, year, var2, year)[2]
             rezultat = nal_32b(var1, year, var2, year)[2]
         elif extra == 'texp':
             const = 0.01
