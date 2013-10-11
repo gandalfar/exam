@@ -16,6 +16,7 @@ class ExamLogEntryAdmin(admin.ModelAdmin):
 class DatasetAdmin(admin.ModelAdmin):
     list_display = ('varname', 'year')
     list_filter = ('year',)
+    search_fields = ('varname', )
 
 class TaskAdmin(admin.ModelAdmin):
     list_display = ('title', 'active', 'order')

@@ -26,24 +26,31 @@ class Dataset(models.Model):
     c8 = models.FloatField(blank=True, null=True, help_text="Finska") #old
     c9 = models.FloatField(blank=True, null=True, help_text="Francija") #old
     c10 = models.FloatField(blank=True, null=True, help_text="Grčija") #old
-    c11 = models.FloatField(blank=True, null=True, help_text="Irska") #old
-    c12 = models.FloatField(blank=True, null=True, help_text="Italija") #old
-    c13 = models.FloatField(blank=True, null=True, help_text="Latvija") #new
-    c14 = models.FloatField(blank=True, null=True, help_text="Litva") #new
-    c15 = models.FloatField(blank=True, null=True, help_text="Luksemburg") #old
-    c16 = models.FloatField(blank=True, null=True, help_text="Madžarska") #new
-    c17 = models.FloatField(blank=True, null=True, help_text="Malta") #new
-    c18 = models.FloatField(blank=True, null=True, help_text="Nemčija") #old
-    c19 = models.FloatField(blank=True, null=True, help_text="Nizozemska") #old
-    c20 = models.FloatField(blank=True, null=True, help_text="Poljska") #new
-    c21 = models.FloatField(blank=True, null=True, help_text="Portugalska") #old
-    c22 = models.FloatField(blank=True, null=True, help_text="Romunija") #new
-    c23 = models.FloatField(blank=True, null=True, help_text="Slovaška") #new
-    c24 = models.FloatField(blank=True, null=True, help_text="Slovenija") #new
-    c25 = models.FloatField(blank=True, null=True, help_text="Španija") #old
-    c26 = models.FloatField(blank=True, null=True, help_text="Švedska") #old
-    c27 = models.FloatField(blank=True, null=True, help_text="Velika Britanija") #old
+    c11 = models.FloatField(blank=True, null=True, help_text="Hrvaška") #new
+    c12 = models.FloatField(blank=True, null=True, help_text="Irska") #old
+    c13 = models.FloatField(blank=True, null=True, help_text="Italija") #old
+    c14 = models.FloatField(blank=True, null=True, help_text="Latvija") #new
+    c15 = models.FloatField(blank=True, null=True, help_text="Litva") #new
+    c16 = models.FloatField(blank=True, null=True, help_text="Luksemburg") #old
+    c17 = models.FloatField(blank=True, null=True, help_text="Madžarska") #new
+    c18 = models.FloatField(blank=True, null=True, help_text="Malta") #new
+    c19 = models.FloatField(blank=True, null=True, help_text="Nemčija") #old
+    c20 = models.FloatField(blank=True, null=True, help_text="Nizozemska") #old
+    c21 = models.FloatField(blank=True, null=True, help_text="Poljska") #new
+    c22 = models.FloatField(blank=True, null=True, help_text="Portugalska") #old
+    c23 = models.FloatField(blank=True, null=True, help_text="Romunija") #new
+    c24 = models.FloatField(blank=True, null=True, help_text="Slovaška") #new
+    c25 = models.FloatField(blank=True, null=True, help_text="Slovenija") #new
+    c26 = models.FloatField(blank=True, null=True, help_text="Španija") #old
+    c27 = models.FloatField(blank=True, null=True, help_text="Švedska") #old
+    c28 = models.FloatField(blank=True, null=True, help_text="Velika Britanija") #old
     sel = models.CharField(max_length=255)
+
+    def get_countries(self):
+        data = []
+        for i in range(1,29):
+            data.append( [self._meta.get_field('c'+str(i)).help_text, getattr(self, 'c'+str(i))] )
+        return data
 
     def __unicode__(self):
         return self.varname
@@ -54,15 +61,20 @@ class Dataset(models.Model):
         list_filter = ['year']
         list_display = ('varname', 'year', 'descs')
         
-    def get_selected_countries(self):
-      countries = self.sel.split(', ')[0:18]
-      
-      selected_countries = {}
-      for i in countries:
-        if not getattr(self, "c"+i) == None:
-            selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
-         
-      return selected_countries
+    def get_selected_countries(self, var2):
+        data = []
+        countries = self.sel.split(', ')[0:18]
+
+        # selected_countries = {}
+        # for i in countries:
+        #     if not getattr(self, "c"+i) == None:
+        #     selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
+
+        for i in countries:
+            if not getattr(self, "c"+i) == None:
+                data.append( [self._meta.get_field('c'+str(i)).help_text, getattr(self, 'c'+str(i)), getattr(var2, 'c'+str(i)) ] )
+        
+        return data
 
 nacin_studija_choices = (
   (0, 'redni'),
