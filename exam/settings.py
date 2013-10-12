@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'exam.calc',
     'south',
     'gunicorn',
-    'raven'
+    'raven.contrib.django'
 )
 
 AUTH_PROFILE_MODULE = 'calc.UserProfile'
