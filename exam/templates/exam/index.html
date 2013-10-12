@@ -30,12 +30,14 @@ Eurostat: področje {{ var2.region }}, naslov tabele {{ var2.desce  }}</p>
 	</tr>
 
     {% for country,var in var1.get_countries %}
-        {% if var or var == 0 %}
         <tr>
             <td>{{ country }}</td>
+            {% if var or var == 0 %}
             <td>{{ var }}</td>
+            {% else %}
+            <td>-</td>
+            {% endif %}
         </tr>
-        {% endif %}
     {% endfor %}        
 </table>
 <br /><br />
