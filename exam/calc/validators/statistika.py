@@ -81,13 +81,13 @@ def nal_32b(var1, year1, var2, year2):
     n = len(v2)
     
     sez1 = []
-    for i in range(1,28):
+    for i in range(1,29):
         try:
             sez1.append(v1['c'+str(i)])
         except KeyError:
             pass
     sez2 = []
-    for i in range(1,28):
+    for i in range(1,29):
         try:
             sez2.append(v2['c'+str(i)])
         except KeyError:
@@ -379,16 +379,16 @@ def seznam_vzorec(var, year, eu=None, sez=None):
             sez.append(int(t))
         sez.sort()
     else:
-        sez = range(1,28)
+        sez = range(1,29)
 
-    old_member = [1,2,6,8,9,10,11,12,15,18,19,21,25,26,27]
-    new_member = [3,4,5,7,13,14,16,17,20,22,23,24]
+    old_member = [1,2,6,8,9,10,12,13,16,19,20,22,26,27,28]
+    new_member = [3,4,5,7,11,14,15,17,18,21,23,24,25]
 
     #i = uset.datasets.get_object(varname__exact=var, year__exact=year).__dict__
     i = Dataset.objects.get(varname__exact=var, year__exact=year).__dict__
     x = []
     y = {}
-    for m in range(1,28):
+    for m in range(1,29):
         if m in sez:
             if   eu == None:
                      ok = True
@@ -417,7 +417,7 @@ def seznam(var, year):
     i = Dataset.objects.get(varname__exact=var, year__exact=year).__dict__
     x = []
     y = {}
-    for m in range(1,28):
+    for m in range(1,29):
       if i['c'+str(m)] == 0:
         pass
       else:
