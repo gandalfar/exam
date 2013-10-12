@@ -23,9 +23,10 @@ def main(options):
     # CalculatedAnswer.objects.all().delete()
     # return
 
-    for row in range(2, sh.nrows):
+    for row in range(2, 3): # sh.nrows):
         vpisna = int(sh.cell_value(row, 0))
         ime = sh.cell_value(row,2)
+        print vpisna
 
         var1_code = sh.cell_value(row, 3)
         var2_code = sh.cell_value(row, 5)
@@ -62,12 +63,13 @@ def main(options):
             val = float(sh.cell_value(row, val_no))
             # CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
             try:
+
                 calc = CalculatedAnswer.objects.get(var1=var1, var2=var2, question=q)
                 delta = abs(calc.value - val)
-                if delta > 0.01:
+                if delta > 0.0000000000001:
                     print '%s   Changing value from %.4f to %.4f' % (vpisna, calc.value, val)
-                    # calc.value = val
-                    # calc.save()
+                    calc.value = val
+                    calc.save()
             except CalculatedAnswer.DoesNotExist:
                 # CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
                 print '%s   Changing old value: %s to %s' % (vpisna, q_id, val_no)
