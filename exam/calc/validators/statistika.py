@@ -355,7 +355,7 @@ def rang(var, year, r):
 
     counter = 1
     for j in s:
-        if j[0] == 'c24':
+        if j[0] == 'c25':
             slovenija = counter
         counter = counter + 1
 
@@ -836,7 +836,7 @@ def nal1_c(uid, q, input, extra, solve=False, return_const=False):
     absolute = False
    
     if extra == "rang1":
-        rezultat = rang(var1, year1, 24)
+        rezultat = rang(var1, year1, 25)
         const = 0
         
         print rezultat, const
