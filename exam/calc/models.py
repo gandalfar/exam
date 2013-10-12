@@ -63,7 +63,7 @@ class Dataset(models.Model):
         
     def get_selected_countries(self, var2):
         data = []
-        countries = self.sel.split(', ')[0:18]
+        countries = sorted(self.sel.split(', ')[0:18], key=int)
 
         # selected_countries = {}
         # for i in countries:
