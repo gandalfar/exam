@@ -7,6 +7,8 @@ import math
 from pprint import pprint
 import statistics
 
+from scipy.stats import t
+
 def test():
     uid = '21030101'
    
@@ -418,12 +420,13 @@ def seznam(var, year):
     x = []
     y = {}
     for m in range(1,29):
-      if i['c'+str(m)] == 0:
-        pass
-      else:
-        value = float(str(i['c'+str(m)]))
-        x.append(value)
-        y.__setitem__('c'+str(m), value)
+        # if i['c'+str(m)] == 0:
+        if i['c'+str(m)] == None:
+            pass
+        else:
+            value = float(str(i['c'+str(m)]))
+            x.append(value)
+            y.__setitem__('c'+str(m), value)
     return x, y
 
 def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=False):
@@ -677,6 +680,14 @@ def eu_testna_statistika(var, year):
     t = statistics.tinv(probability, n-2)
     
     return t
+
+def tdist(var, year, x, eu=None):
+    s,f = seznam_vzorec(var, year, eu=eu)
+    n = len(s)
+
+    print "=TDIST(%s, %s, 2)" % (x, n-2)
+    result = ( 1-t.cdf(x, n-2) ) * 2
+    return result
 
 def std_odklon(var, year):
     s, m = seznam(var, year)
@@ -952,7 +963,11 @@ def nal2_e(uid, q, input, extra, solve=False, return_const=False):
         rezultat = eu_testna_statistika(var, year)
         const = 0.05
         if input < 0:
-            input = input * (-1) 
+            input = input * (-1)
+    elif extra == 'stopnja_znacilnosti':
+        x = eu_testna_statistika(var, year)
+        rezultat = tdist(var, year, x)
+        const = 0.05
     
     if const:
       return primerjaj(input, rezultat, solve, const, absolute=absolute, return_const=return_const)
@@ -1038,6 +1053,10 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
             const = 0.01
         elif extra == 'sto22':
             rezultat = strukturni_odstotki(var1, year)[3]
+            const = 0.01
+        elif extra == 'stopnja_znacilnosti':
+            x = nal_32b(var1, year, var2, year)[3]
+            rezultat = tdist(var1, year, x)
             const = 0.01
 
     if const:
