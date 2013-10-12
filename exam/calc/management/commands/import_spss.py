@@ -17,12 +17,11 @@ def return_None(x):
       
 def main(options):
     wb = xlrd.open_workbook(sys.argv[2])
-    sh = wb.sheet_by_index(3)
+    sh = wb.sheet_by_index(0)
 
-    # CalculatedAnswer.objects.all().delete()
-    # return
+    CalculatedAnswer.objects.all().delete()
 
-    for row in range(2, 8):
+    for row in range(2, sh.nrows):
         vpisna = int(sh.cell_value(row, 0))
         ime = sh.cell_value(row,2)
 

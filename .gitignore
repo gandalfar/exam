@@ -6,3 +6,4 @@ localsettings.py
 .installed.cfg
 .mr.developer.cfg
 files/
+.*

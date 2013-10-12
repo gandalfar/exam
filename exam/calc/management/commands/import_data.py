@@ -10,7 +10,7 @@ import xlrd
 
 def return_None(x):
     if x == '':
-      return 0.0
+      return None
     else:
       return x
 
@@ -26,6 +26,7 @@ def main(options):
 
     for row in range(1, sh.nrows):
         line = sh.row_values(row)
+        print line
 
         args = {"region":line[0],
                 "varname":line[1],
@@ -59,8 +60,9 @@ def main(options):
                 "c25":return_None(line[32]),
                 "c26":return_None(line[33]),
                 "c27":return_None(line[34]),
-                "d1": check_index(line, 35),
-                "u1": check_index(line, 36),
+                "c28":return_None(line[35]),
+                # "d1": check_index(line, 36),
+                # "u1": check_index(line, 37),
                 }
 
         dataset_args = {}
@@ -77,12 +79,13 @@ def main(options):
         for x in args:
            setattr(p, x, args[x])
 
-        # note the missing 24 because we include it everytime
-        seznam = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,25,26,27]
+        seznam = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
+        # remove 25 (Slovenia) because we include it everytime
+        seznam.remove(25)
 
-        old_member = [1,2,6,8,9,10,11,12,15,18,19,21,25,26,27]
-        new_member = [3,4,5,7,13,14,16,17,20,22,23]
-        picked = [24]
+        old_member = [1,2,6,8,9,10,12,13,16,19,20,22,26,27,28]
+        new_member = [3,4,5,7,11,14,15,17,18,21,23,24,25]
+        picked = [25]
 
         for i in old_member:
             if getattr(p, 'c'+str(i)) == 0.0:

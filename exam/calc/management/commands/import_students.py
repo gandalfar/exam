@@ -29,6 +29,8 @@ def main(options):
         priimek = sh.cell_value(row, 1)
         vpisna = str(int(sh.cell_value(row, 0)))
 
+        print row, vpisna
+
         if User.objects.filter(username__exact=vpisna):
           print "Uporabnik %s ze obstaja v bazi" % vpisna
           user = User.objects.get(username__exact=vpisna)
@@ -61,13 +63,22 @@ def main(options):
         var2 = sh.cell_value(row,10)
         year2 = sh.cell_value(row,11)
 
-        var1 = Dataset.objects.get(year__exact=year1, varname__exact=var1)
-        var2 = Dataset.objects.get(year__exact=year2, varname__exact=var2)
+        var1 = Dataset.objects.get(varname__exact=var1)
+        var2 = Dataset.objects.get(varname__exact=var2)
         
-        profil = UserProfile(user=user, vpisna=vpisna, studijsko_leto=studijsko_leto, izvajalec=izvajalec,
-                   nacin_studija=nacin_studija, cikel='', var1=var1, var2=var2)
-        profil.save()
-    
+
+        UserProfile.objects.get_or_create(
+            user = user,
+            vpisna = vpisna,
+            defaults = {
+                'studijsko_leto': studijsko_leto, 
+                'izvajalec': izvajalec,
+                'nacin_studija': nacin_studija, 
+                'cikel': '', 
+                'var1': var1, 
+                'var2': var2            
+            }
+        )    
 
 class Command(BaseCommand):
     help = "imports users in csv, tab delimited format"
