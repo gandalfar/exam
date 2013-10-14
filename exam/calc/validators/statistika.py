@@ -507,11 +507,11 @@ def zaupanje_aritmeticna(var, year):
     asredina = stats.lmean(s)
     #z = 2.093
     
-    print n, "artimeticna", var, year
+    # print n, "artimeticna", var, year
     probability = 0.05
     
     z = round(statistics.tinv(probability, n-1), 2)
-    print "z is", z
+    # print "z is", z
            
     std = math.sqrt(vzorcna_varianca(var, year)[0])
 
@@ -850,7 +850,7 @@ def nal1_c(uid, q, input, extra, solve=False, return_const=False):
         rezultat = rang(var1, year1, 25)
         const = 0
         
-        print rezultat, const
+        # print rezultat, const
 
     if const != None:
       return primerjaj(input, rezultat, solve, const, absolute=absolute, return_const=return_const)
@@ -965,9 +965,9 @@ def nal2_e(uid, q, input, extra, solve=False, return_const=False):
         if input < 0:
             input = input * (-1)
     elif extra == 'stopnja_znacilnosti':
-        x = eu_testna_statistika(var, year)
+        x = eu_std_razlika_vzorcnih_arit_sred(var, year)
         rezultat = tdist(var, year, x)
-        const = 0.05
+        const = 0.001
     
     if const:
       return primerjaj(input, rezultat, solve, const, absolute=absolute, return_const=return_const)
@@ -1026,7 +1026,7 @@ def nal3_a(uid, q, input, extra, solve=False, return_const=False):
             rezultat = nal_32b(var1, year, var2, year)[1]
         elif extra == 'rxy':
             # const = 0.005
-            print 'foo', nal_32b(var1, year, var2, year)[2]
+            # print 'foo', nal_32b(var1, year, var2, year)[2]
             rezultat = nal_32b(var1, year, var2, year)[2]
         elif extra == 'texp':
             const = 0.01
