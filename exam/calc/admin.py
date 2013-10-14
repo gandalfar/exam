@@ -5,6 +5,7 @@ from exam.calc.models import Lecture, Task, Section, Question, Answer, ExamLogEn
 class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ['vpisna', 'user__first_name', 'user__last_name', 'var1__varname', 'var2__varname']
     raw_id_fields = ['user',]
+    list_filter = ['is_special',]
 admin.site.register(UserProfile, UserProfileAdmin)
 
 class ExamLogEntryAdmin(admin.ModelAdmin):
