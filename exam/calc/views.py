@@ -26,7 +26,7 @@ def index(request):
     context = {
       'var1': var1,
       'var2': var2,
-      'd': var1.get_selected_countries(var2),
+      'd': var1.get_selected_countries(var2, show_missing=True),
       'section_list': section_list,
     }
     return render_to_response('exam/index.html', context, context_instance=RequestContext(request))
