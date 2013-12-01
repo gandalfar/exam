@@ -36,9 +36,12 @@ def main(options):
             user = User.objects.get(username=str(vpisna))
             profile = user.get_profile()
             profile.is_special = True
+            profile.var1 = var1
+            profile.var2 = var2
             profile.save()
 
-            print profile.is_special
+            # print profile.is_special
+        print vpisna, var1, var2
         # else:
         #     user = User.objects.create_user(vpisna, 'none@example.com', ime.lower())
         #     profil = UserProfile(user=user, vpisna=vpisna, studijsko_leto='', izvajalec='',
@@ -55,7 +58,7 @@ def main(options):
             val = sh.cell_value(row, val_no)
             CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
 
-            print q
+            # print q
         
     
 

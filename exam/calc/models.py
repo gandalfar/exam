@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
 from django.contrib.auth.models import User
+import random
 
 class Dataset(models.Model):
     region = models.CharField(max_length=100)
@@ -75,6 +76,42 @@ class Dataset(models.Model):
                 data.append( [self._meta.get_field('c'+str(i)).help_text, getattr(self, 'c'+str(i)), getattr(var2, 'c'+str(i)) ] )
         
         return data
+
+    def generate_sample(self):
+        seznam = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28]
+        # remove 25 (Slovenia) because we include it everytime
+        seznam.remove(25)
+
+        old_member = [1,2,6,8,9,10,12,13,16,19,20,22,26,27,28]
+        new_member = [3,4,5,7,11,14,15,17,18,21,23,24]
+        picked = [25]
+
+        for i in old_member:
+            val = getattr(self, 'c'+str(i))
+            if not val or val == 0:
+                old_member.remove(i)
+
+        for i in new_member:
+            val = getattr(self, 'c'+str(i))
+            if not val or val == 0:
+                new_member.remove(i)
+
+        for n in range(0,6):
+            g = random.choice(old_member)
+            old_member.remove(g)
+            picked.append(g)
+            # print "old:", g
+
+        for n in range(0,3):
+            g = random.choice(new_member)
+            new_member.remove(g)
+            picked.append(g)
+            # print "new:", g
+
+        # print "picked #", len(picked)
+        s = str(picked).strip('[]')
+        self.sel = s
+        self.save()        
 
 nacin_studija_choices = (
   (0, 'redni'),
