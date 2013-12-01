@@ -19,7 +19,7 @@ def main(options):
     wb = xlrd.open_workbook(sys.argv[2])
     sh = wb.sheet_by_index(0)
 
-    CalculatedAnswer.objects.all().delete()
+    # CalculatedAnswer.objects.all().delete()
 
     for row in range(2, sh.nrows):
         vpisna = int(sh.cell_value(row, 0))
