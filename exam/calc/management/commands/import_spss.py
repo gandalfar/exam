@@ -41,7 +41,7 @@ def main(options):
             profile.save()
 
             # print profile.is_special
-        print vpisna, var1, var2
+
         # else:
         #     user = User.objects.create_user(vpisna, 'none@example.com', ime.lower())
         #     profil = UserProfile(user=user, vpisna=vpisna, studijsko_leto='', izvajalec='',

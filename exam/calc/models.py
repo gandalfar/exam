@@ -62,7 +62,7 @@ class Dataset(models.Model):
         list_filter = ['year']
         list_display = ('varname', 'year', 'descs')
         
-    def get_selected_countries(self, var2):
+    def get_selected_countries(self, var2, show_missing=False):
         data = []
         countries = sorted(self.sel.split(', ')[0:18], key=int)
 
@@ -72,8 +72,11 @@ class Dataset(models.Model):
         #     selected_countries.__setitem__("c"+i, float(str(eval("self.c"+i))))
 
         for i in countries:
-            if not getattr(self, "c"+i) == None:
+            if show_missing:
                 data.append( [self._meta.get_field('c'+str(i)).help_text, getattr(self, 'c'+str(i)), getattr(var2, 'c'+str(i)) ] )
+            else:
+                if not getattr(self, "c"+i) == None:
+                    data.append( [self._meta.get_field('c'+str(i)).help_text, getattr(self, 'c'+str(i)), getattr(var2, 'c'+str(i)) ] )
         
         return data
 
