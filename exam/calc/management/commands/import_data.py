@@ -78,40 +78,8 @@ def main(options):
 
         for x in args:
            setattr(p, x, args[x])
-
-        seznam = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27]
-        # remove 25 (Slovenia) because we include it everytime
-        seznam.remove(25)
-
-        old_member = [1,2,6,8,9,10,12,13,16,19,20,22,26,27,28]
-        new_member = [3,4,5,7,11,14,15,17,18,21,23,24,25]
-        picked = [25]
-
-        for i in old_member:
-            if getattr(p, 'c'+str(i)) == 0.0:
-                old_member.remove(i)
-
-        for i in new_member:
-            if getattr(p, 'c'+str(i)) == 0.0:
-                new_member.remove(i)
-
-        for n in range(0,6):
-            g = random.choice(old_member)
-            old_member.remove(g)
-            picked.append(g)
-            print "old:", g
-
-        for n in range(0,3):
-            g = random.choice(new_member)
-            new_member.remove(g)
-            picked.append(g)
-            print "new:", g
-
-        print "picked #", len(picked)
-        s = str(picked).strip('[]')
-        p.sel = s
-
         p.save()
+        p.generate_sample()
 
 class Command(BaseCommand):
     help = "imports data in csv, tab delimited format"
