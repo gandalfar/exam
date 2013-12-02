@@ -2,6 +2,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import random
+from copy import deepcopy
 
 class Dataset(models.Model):
     region = models.CharField(max_length=100)
@@ -89,32 +90,42 @@ class Dataset(models.Model):
         new_member = [3,4,5,7,11,14,15,17,18,21,23,24]
         picked = [25]
 
-        for i in old_member:
+        for i in deepcopy(old_member):
             val = getattr(self, 'c'+str(i))
-            if not val or val == 0:
+            if not val or val == 0.0:
                 old_member.remove(i)
 
-        for i in new_member:
+        for i in deepcopy(new_member):
             val = getattr(self, 'c'+str(i))
-            if not val or val == 0:
+            if not val or val == 0.0:
                 new_member.remove(i)
 
         for n in range(0,6):
             g = random.choice(old_member)
             old_member.remove(g)
             picked.append(g)
-            # print "old:", g
 
         for n in range(0,3):
             g = random.choice(new_member)
             new_member.remove(g)
             picked.append(g)
-            # print "new:", g
 
-        # print "picked #", len(picked)
+        picked.sort()
         s = str(picked).strip('[]')
         self.sel = s
-        self.save()        
+        self.save()
+
+    def get_sample_values(self):
+        vzorec = self.sel.split(', ')
+        # print vzorec
+        vrednosti = []
+        for i in vzorec:
+            i = int(i)
+            val = getattr(self, 'c'+str(i))
+            if val and val != 0.0:
+                vrednosti.append(val)
+
+        return vrednosti
 
 nacin_studija_choices = (
   (0, 'redni'),
