@@ -239,14 +239,14 @@ def hikvadrat(var, year):
 def strukturni_odstotki(var, year):
     t11, t21, t12, t22, n = kontingencna(var, year)
   
-    print t11, t21, t12, t22
+    # print t11, t21, t12, t22
   
     o11 = t11 / float(t11+t12) * 100
     o12 = t12 / float(t11+t12) * 100
     o21 = t21 / float(t21+t22) * 100
     o22 = t22 / float(t21+t22) * 100
     
-    print o11, o12, o21, o22
+    # print o11, o12, o21, o22
     
     return o11, o12, o21, o22
 
@@ -430,7 +430,7 @@ def seznam(var, year):
     return x, y
 
 def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=False):
-    print input, rezultat, solve, const, absolute, return_const
+    # print input, rezultat, solve, const, absolute, return_const
     if return_const:
       return const
       
@@ -446,7 +446,7 @@ def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=
         i1 = rezultat * (1 - const)
         i2 = rezultat * (1 + const)
 
-        print i1, i2
+        # print i1, i2
 
     if solve:
       if type(rezultat) == list:
@@ -491,7 +491,7 @@ def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=
         else:
             r = False
 
-    print "Primerjam %s in %s pri %s in je %s [%s, %s]" % (input, rezultat, const, r, i1, i2)
+    # print "Primerjam %s in %s pri %s in je %s [%s, %s]" % (input, rezultat, const, r, i1, i2)
     
     return r
 
@@ -685,7 +685,7 @@ def tdist(var, year, x, eu=None):
     s,f = seznam_vzorec(var, year, eu=eu)
     n = len(s)
 
-    print "=TDIST(%s, %s, 2)" % (x, n-2)
+    # print "=TDIST(%s, %s, 2)" % (x, n-2)
     result = ( 1-t.cdf(x, n-2) ) * 2
     return result
 
