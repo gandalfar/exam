@@ -491,7 +491,7 @@ def primerjaj(input, rezultat, solve, const=0.001, absolute=False, return_const=
         else:
             r = False
 
-    # print "Primerjam %s in %s pri %s in je %s [%s, %s]" % (input, rezultat, const, r, i1, i2)
+    print "Primerjam %s in %s pri %s in je %s [%s, %s]" % (input, rezultat, const, r, i1, i2)
     
     return r
 
@@ -684,8 +684,9 @@ def eu_testna_statistika(var, year):
 def tdist(var, year, x, eu=None):
     s,f = seznam_vzorec(var, year, eu=eu)
     n = len(s)
+    x = abs(x)
 
-    # print "=TDIST(%s, %s, 2)" % (x, n-2)
+    print "=TDIST(%s, %s, 2)" % (x, n-2)
     result = ( 1-t.cdf(x, n-2) ) * 2
     return result
 
