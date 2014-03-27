@@ -107,7 +107,7 @@ def nal_32b(var1, year1, var2, year2):
         d = d + (sez1[i] - as1)**2
         e = e + (sez2[i] - as2)**2
 
-        print sez1[i], sez2[i], c, d, e
+        # print sez1[i], sez2[i], c, d, e
     rxy = round(c / math.sqrt(d*e),4)
 
     texp = (rxy*math.sqrt(n-2)) / math.sqrt(1 - rxy**2) 
@@ -686,7 +686,7 @@ def tdist(var, year, x, eu=None):
     n = len(s)
     x = abs(x)
 
-    print "=TDIST(%s, %s, 2)" % (x, n-2)
+    # print "=TDIST(%s, %s, 2)" % (x, n-2)
     result = ( 1-t.cdf(x, n-2) ) * 2
     return result
 
