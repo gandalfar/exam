@@ -28,7 +28,7 @@
       <tr>
         <td>{{ question|safe }} {% ifequal student.get_profile.cikel "Ostalo" %}({% show_precision question.id student.id %}%){% endifequal %}</td>
         <td class={% if student_ans.correct %}"right"{% else %}"wrong"{% endif %}>{{ student_ans.input }}</td>
-        <td>{{ calc_ans|stringformat:"01.4f" }}</td>
+        <td>{{ calc_ans|stringformat:"01.7f" }}</td>
       </tr>
       {% endif %}
     {% endif %}{% endfor %}    
