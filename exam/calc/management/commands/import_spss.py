@@ -29,7 +29,9 @@ def main(options):
         var1_code = sh.cell_value(row, 3)
         var2_code = sh.cell_value(row, 5)
 
+        print [var1_code]
         var1 = Dataset.objects.get(varname=var1_code)
+        print [var2_code]
         var2 = Dataset.objects.get(varname=var2_code)
 
         if User.objects.filter(username=str(vpisna)).exists():
@@ -48,10 +50,10 @@ def main(options):
         #                nacin_studija=0, cikel='', var1=var1, var2=var2, is_special=True)
         #     profil.save()
 
-        # var1.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
-        # var1.save()
-        # var2.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
-        # var2.save()
+        var1.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
+        var1.save()
+        var2.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
+        var2.save()
 
         for q_id, val_no in [[12,7],[13,8],[14,9], [19,10], [20,11], [62, 12], [63,13], [51,14]]:
             q = Question.objects.get(pk=q_id)
