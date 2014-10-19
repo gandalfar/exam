@@ -50,9 +50,9 @@ def main(options):
         #                nacin_studija=0, cikel='', var1=var1, var2=var2, is_special=True)
         #     profil.save()
 
-        var1.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
+        var1.sel = '3, 6, 9, 13, 14, 18, 19, 22, 24, 25'
         var1.save()
-        var2.sel = '3, 6, 9, 12, 13, 17, 18, 21, 23, 24'
+        var2.sel = '3, 6, 9, 13, 14, 18, 19, 22, 24, 25'
         var2.save()
 
         for q_id, val_no in [[12,7],[13,8],[14,9], [19,10], [20,11], [62, 12], [63,13], [51,14]]:
