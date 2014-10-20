@@ -29,6 +29,12 @@ def main(options):
         var1_code = sh.cell_value(row, 3)
         var2_code = sh.cell_value(row, 5)
 
+        if not var1_code.endswith('-AS'):
+            var1_code = var1_code + '-AS'
+
+        if not var2_code.endswith('-AS'):
+            var2_code = var2_code + '-AS'
+
         print [var1_code]
         var1 = Dataset.objects.get(varname=var1_code)
         print [var2_code]
