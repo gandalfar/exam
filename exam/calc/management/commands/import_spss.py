@@ -19,7 +19,7 @@ def main(options):
     wb = xlrd.open_workbook(sys.argv[2])
     sh = wb.sheet_by_index(0)
 
-    # CalculatedAnswer.objects.all().delete()
+    CalculatedAnswer.objects.all().delete()
 
     for row in range(2, sh.nrows):
         vpisna = int(sh.cell_value(row, 0))
@@ -64,7 +64,7 @@ def main(options):
         for q_id, val_no in [[12,7],[13,8],[14,9], [19,10], [20,11], [62, 12], [63,13], [51,14]]:
             q = Question.objects.get(pk=q_id)
             val = sh.cell_value(row, val_no)
-            CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, value=val)
+            CalculatedAnswer.objects.get_or_create(var1=var1, var2=var2, question=q, defaults={ 'value': val })
 
             # print q
         
