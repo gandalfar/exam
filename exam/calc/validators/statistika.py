@@ -374,7 +374,7 @@ def seznam_vzorec(var, year, eu=None, sez=None):
     #a = uset.datasets.get_object(varname__exact=var, year__exact=year).sel.split(', ')
     #exam.calc.DataSet.objects.get(varname__exact=var, year__exact=year).get_selected_countries
     a = Dataset.objects.get(varname__exact=var, year__exact=year).sel.split(', ')[0:18]
-    
+
     if not sez:
         sez = []
         for t in a:
@@ -407,7 +407,7 @@ def seznam_vzorec(var, year, eu=None, sez=None):
             else:
                 ok = True
             if ok:
-                if i['c'+str(m)]:
+                if i['c'+str(m)] != None:
                   x.append(i['c'+str(m)])
                   y.__setitem__('c'+str(m), i['c'+str(m)])
                 ok = False
