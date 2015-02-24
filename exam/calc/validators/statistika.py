@@ -253,22 +253,28 @@ def strukturni_odstotki(var, year):
 def kontingencna(var, year):
     stare = seznam_vzorec(var, year, 'old', sez=True)[0]
     stare.sort()
-    while True:
-        try:
-            stare.remove(0)
-        except ValueError:
-            break
+
+    # Removes 0 from sample values
+    # while True:
+    #     try:
+    #         stare.remove(0)
+    #     except ValueError:
+    #         break
+
     nove  = seznam_vzorec(var, year, 'new', sez=True)[0]
     nove.sort()
-    while True:
-        try:
-            nove.remove(0)
-        except ValueError:
-            break
+
+    # Removes 0 from sample values
+    # while True:
+    #     try:
+    #         nove.remove(0)
+    #     except ValueError:
+    #         break
 
     #med = kvartili(var, year)[1]
     sez = seznam(var, year)[0]
     sez.sort()
+
     med = mediana(sez)
     ms = med
     mn = med
