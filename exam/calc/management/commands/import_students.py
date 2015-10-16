@@ -41,7 +41,10 @@ class Command(BaseCommand):
             passwd = unidecode(passwd)
 
             priimek = sh.cell_value(row, 1)
-            vpisna = str(int(sh.cell_value(row, 0)))
+            try:
+                vpisna = str(int(sh.cell_value(row, 0)))
+            except ValueError:
+                return
 
             print(row, vpisna)
 

@@ -28,7 +28,10 @@ class Command(BaseCommand):
         wb = xlrd.open_workbook(sys.argv[2])
 
         for idx in [0, 1]:
-            sh = wb.sheet_by_index(idx)
+            try:
+                sh = wb.sheet_by_index(idx)
+            except IndexError:
+                return
 
             for row in range(1, sh.nrows):
                 line = sh.row_values(row)
