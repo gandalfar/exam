@@ -27,7 +27,7 @@ STATIC_URL = '/exam/media/'
 ROOT_URLCONF = 'exam.urls'
 
 TEMPLATE_DIRS = (
-    
+    here('templates')
 )
 
 INSTALLED_APPS = (
