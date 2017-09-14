@@ -18,7 +18,7 @@ LANGUAGE_CODE = 'sl-si'
 
 SITE_ID = 1
 
-MEDIA_ROOT = 'exam/media/'
+MEDIA_ROOT = here('media')
 STATIC_URL = '/admin-media/'
 
 MEDIA_URL = '/exam/media/'
